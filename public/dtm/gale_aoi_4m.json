@@ -1,0 +1,21 @@
+{
+  "id": "gale_aoi_4m",
+  "source": "USGS Astrogeology MSL Gale DEM Mosaic 1m v3 (HiRISE DTM mosaic), averaged to coarser cells",
+  "credit": "NASA / JPL-Caltech / University of Arizona (HiRISE) / USGS Astrogeology",
+  "url": "https://astrogeology.usgs.gov/search/map/mars_msl_gale_merged_dem_1m",
+  "width": 1245,
+  "height": 1008,
+  "cellSizeMeters": 4,
+  "bbox": {
+    "west": 137.34698501978832,
+    "east": 137.43100063198176,
+    "north": -4.790991553820719,
+    "south": -4.85901383260864
+  },
+  "radiusMeters": 3396190,
+  "elevationBaseMeters": -3982.51708984375,
+  "elevationStepMeters": 0.1,
+  "nodata": -32768,
+  "datum": "Heights above the Mars 2000 areoid as published by USGS; planetocentric lat, east-positive lon",
+  "generatedBy": "scripts/make-dtm.mjs"
+}

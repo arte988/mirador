@@ -1,0 +1,31 @@
+{
+  "source": "USGS Astrogeology, Geologic map of Mars (Tanaka et al. 2014, SIM 3292), feature layer Mars_Geology_feature_layer",
+  "citation": "Tanaka, K.L., Skinner, J.A., Jr., Dohm, J.M., Irwin, R.P., III, Kolb, E.J., Fortezzo, C.M., Platz, T., Michael, G.G., and Hare, T.M., 2014, Geologic map of Mars: U.S. Geological Survey Scientific Investigations Map 3292, scale 1:20,000,000, https://dx.doi.org/10.3133/sim3292",
+  "scale": "1:20,000,000",
+  "aoi": [
+    137.1,
+    -5,
+    137.8,
+    -4.2
+  ],
+  "generated": "2026-11-14",
+  "unitsInAoi": [
+    {
+      "unit": "AHi",
+      "desc": "Amazonian and Hesperian impact unit",
+      "color": "#ffff00"
+    },
+    {
+      "unit": "Htu",
+      "desc": "Hesperian transition undivided unit",
+      "color": "#cccccc"
+    }
+  ],
+  "atHabitat": [
+    {
+      "unit": "Htu",
+      "desc": "Hesperian transition undivided unit",
+      "color": "#cccccc"
+    }
+  ]
+}

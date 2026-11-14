@@ -1,0 +1,114 @@
+{
+ "source": "snapshot",
+ "fetchedAt": 1794689616624,
+ "sep": [],
+ "notifications": [
+  {
+   "type": "CME",
+   "id": "20261113-AL-001",
+   "url": "https://ccmc.gsfc.nasa.gov/DONKI/view/Alert/49532/1",
+   "issued": "2026-11-13T16:25Z",
+   "summary": "C-type CME detected by STEREO A / SOHO. Start time of the event: 2026-11-13T03:24Z. Estimated speed: ~525 km/s. Estimated opening half-angle: 17 deg. Direction (lon./lat.): -46/13 in Heliocentric Earth Equatorial coordinates. Activity ID: 2026-11-13T03:24:00-CME-001 Based on pre…"
+  },
+  {
+   "type": "RBE",
+   "id": "20261112-AL-001",
+   "url": "https://ccmc.gsfc.nasa.gov/DONKI/view/Alert/49522/1",
+   "issued": "2026-11-12T21:30Z",
+   "summary": "Significantly elevated energetic electron fluxes in the Earth's outer radiation belt. GOES \"greater than 2.0 MeV\" integral electron flux remains elevated, recently crossing the threshold of 1000 pfu at 2026-11-12T07:35Z. The elevated energetic electron flux levels observed since…"
+  },
+  {
+   "type": "Report",
+   "id": "20261111-7D-001",
+   "url": "https://ccmc.gsfc.nasa.gov/DONKI/view/Alert/49503/1",
+   "issued": "2026-11-11T21:02Z",
+   "summary": "Solar activity was at moderate level during this reporting period, with 7 M-class flares and 7 C-type CMEs (see details below). Based on preliminary analysis by the Moon to Mars Space Weather Analysis Office and heliospheric modeling carried out at NASA Community Coordinated Mod…"
+  },
+  {
+   "type": "RBE",
+   "id": "20261110-AL-003",
+   "url": "https://ccmc.gsfc.nasa.gov/DONKI/view/Alert/49486/1",
+   "issued": "2026-11-10T21:31Z",
+   "summary": "Significantly elevated energetic electron fluxes in the Earth's outer radiation belt. GOES \"greater than 2.0 MeV\" integral electron flux remains elevated, recently crossing the threshold of 1000 pfu at 2026-11-10T06:10Z. The elevated energetic electron flux levels observed since…"
+  },
+  {
+   "type": "CME",
+   "id": "20261110-AL-002",
+   "url": "https://ccmc.gsfc.nasa.gov/DONKI/view/Alert/49483/1",
+   "issued": "2026-11-10T16:29Z",
+   "summary": "C-type CME detected by GOES / STEREO A / SOHO. Start time of the event: 2026-11-10T05:30Z. Estimated speed: ~974 km/s. Estimated opening half-angle: 11 deg. Direction (lon./lat.): 93/2 in Heliocentric Earth Equatorial coordinates. Activity ID: 2026-11-10T05:30:00-CME-001 Based o…"
+  },
+  {
+   "type": "CME",
+   "id": "20261110-AL-001",
+   "url": "https://ccmc.gsfc.nasa.gov/DONKI/view/Alert/49474/1",
+   "issued": "2026-11-10T13:06Z",
+   "summary": "C-type CME detected by GOES. Start time of the event: 2026-11-09T18:15Z. Estimated speed: ~726 km/s. Estimated opening half-angle: 10 deg. Direction (lon./lat.): 65/-2 in Heliocentric Earth Equatorial coordinates. Activity ID: 2026-11-09T18:15:00-CME-001 Based on preliminary ana…"
+  },
+  {
+   "type": "RBE",
+   "id": "20261108-AL-002",
+   "url": "https://ccmc.gsfc.nasa.gov/DONKI/view/Alert/49464/1",
+   "issued": "2026-11-08T21:28Z",
+   "summary": "Significantly elevated energetic electron fluxes in the Earth's outer radiation belt. GOES \"greater than 2.0 MeV\" integral electron flux is above 1000 pfu starting at 2026-11-08T21:10Z. The elevated energetic electron flux levels are caused by coronal hole high speed stream star…"
+  },
+  {
+   "type": "RBE",
+   "id": "20261108-AL-001",
+   "url": "https://ccmc.gsfc.nasa.gov/DONKI/view/Alert/49463/1",
+   "issued": "2026-11-08T21:18Z",
+   "summary": "Significantly elevated energetic electron fluxes in the Earth's outer radiation belt. GOES \"greater than 2.0 MeV\" integral electron flux is above 1000 pfu starting at 2026-11-08T21:10Z. NASA spacecraft at GEO, MEO and other orbits passing through or in the vicinity of the Earth'…"
+  },
+  {
+   "type": "CME",
+   "id": "20261106-AL-001",
+   "url": "https://ccmc.gsfc.nasa.gov/DONKI/view/Alert/49397/1",
+   "issued": "2026-11-06T01:56Z",
+   "summary": "C-type CME detected by GOES / SOHO. Start time of the event: 2026-11-05T20:00Z. Estimated speed: ~798 km/s. Estimated opening half-angle: 13 deg. Direction (lon./lat.): -35/2 in Heliocentric Earth Equatorial coordinates. Activity ID: 2026-11-05T20:00:00-CME-001 Based on prelimin…"
+  },
+  {
+   "type": "RBE",
+   "id": "20261105-AL-001",
+   "url": "https://ccmc.gsfc.nasa.gov/DONKI/view/Alert/49388/1",
+   "issued": "2026-11-05T13:29Z",
+   "summary": "Significantly elevated energetic electron fluxes in the Earth's outer radiation belt. GOES \"greater than 2.0 MeV\" integral electron flux remains elevated, recently crossing the threshold of 1000 pfu at 2026-11-05T13:00Z. The elevated energetic electron flux levels observed since…"
+  },
+  {
+   "type": "Report",
+   "id": "20261104-7D-001",
+   "url": "https://ccmc.gsfc.nasa.gov/DONKI/view/Alert/49385/1",
+   "issued": "2026-11-04T21:04Z",
+   "summary": "Solar activity was at low levels during this reporting period with one C-type CME (see details below). Based on preliminary analysis by the Moon to Mars Space Weather Analysis Office and heliospheric modeling carried out at NASA Community Coordinated Modeling Center, it was esti…"
+  },
+  {
+   "type": "RBE",
+   "id": "20261103-AL-001",
+   "url": "https://ccmc.gsfc.nasa.gov/DONKI/view/Alert/49369/1",
+   "issued": "2026-11-03T13:28Z",
+   "summary": "Significantly elevated energetic electron fluxes in the Earth's outer radiation belt. GOES \"greater than 2.0 MeV\" integral electron flux remains elevated, recently crossing the threshold of 1000 pfu at 2026-11-03T05:25Z. The elevated energetic electron flux levels observed since…"
+  }
+ ],
+ "marsImpacts": [
+  {
+   "arrival": "2026-11-13T12:00Z",
+   "glancing": true,
+   "minor": false,
+   "simulationID": "WSA-ENLIL/49472/1",
+   "modelCompleted": "2026-11-09T19:32Z"
+  },
+  {
+   "arrival": "2026-11-13T12:00Z",
+   "glancing": true,
+   "minor": false,
+   "simulationID": "WSA-ENLIL/49473/1",
+   "modelCompleted": "2026-11-09T19:59Z"
+  },
+  {
+   "arrival": "2026-11-07T06:00Z",
+   "glancing": true,
+   "minor": false,
+   "simulationID": "WSA-ENLIL/49360/1",
+   "modelCompleted": "2026-11-01T21:43Z"
+  }
+ ]
+}

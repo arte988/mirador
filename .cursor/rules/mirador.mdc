@@ -1,0 +1,36 @@
+---
+description: MIRADOR invariants (Mars CRS, data honesty, English-first dark UI)
+alwaysApply: true
+---
+
+# MIRADOR invariants
+
+MIRADOR is a NASA Space Apps prototype: a hyperlocal layered map to plan and walk a safe science EVA
+on lower Mount Sharp (Gale crater, boxwork unit). Stack: React + TypeScript + Vite + Tailwind CSS v4,
+OpenLayers, zustand, i18next.
+
+## Geometry
+- Use a custom Mars projection (sphere R = 3396190 m, planetocentric lat, east-positive lon). Never use
+  Web Mercator / EPSG:3857 and never reuse an Earth `metersPerUnit` (EPSG:4326 would give wrong scale bars).
+- Code that converts lon/lat to meters or distances lives in `src/lib/crsMars.ts` and has unit tests.
+
+## Data honesty
+- `Mars_MGS_MOLA_DEM_mosaic_global_463m_8` (and any 8-bit WMTS) is a picture, never meters.
+- Numeric elevation only comes from the local DTM in `public/dtm/` (USGS MSL Gale DEM mosaic, 4 m crop).
+- The USGS geologic map (SIM 3292, 1:20,000,000) is regional only. Say so in the UI.
+- NASA Worldview is an Earth tool: UX inspiration only, never presented as Mars data.
+- Do not invent NASA endpoints. Anything not verified is marked "to verify" in code comments and README.
+- Every simulated or assumed value (O2, battery, slope limits, walking speed, comms delay, dose) is
+  labeled as a planning assumption in the UI. Never claim medical or flight certification.
+- Feeds under mars.nasa.gov/rss/api are unofficial: cache, fail soft, show stale labels.
+
+## UI
+- English is the source (`src/i18n/en.ts`). Spanish (`es.ts`) is a toggle persisted in
+  `localStorage["mirador.lang"]`. All visible strings go through `t()`.
+- Dark theme is the default. Signals use text plus color, never color alone.
+- One primary action per screen, safety status always visible (corner in HUD), 44 px touch targets.
+- Respect `prefers-reduced-motion`. No auto-playing audio.
+
+## Engineering
+- Keep route solving in a Web Worker. Keep pure logic (CRS, cost, solar, comms delay) unit tested with Vitest.
+- Do not commit secrets. NASA API key stays server side (serverless proxy in `api/`).
