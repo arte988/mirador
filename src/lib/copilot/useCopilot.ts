@@ -1,11 +1,13 @@
 import { create } from 'zustand'
 import { LiveSession, type LiveErrorCode, type LiveStatus, type Transcript } from './liveClient.ts'
 import { MicrophoneCapture, PcmPlayer } from './audio.ts'
+import { associateEvidence, type EvidenceLine } from './evidence.ts'
+import type { ToolLogEntry } from './toolLog.ts'
 
 export type OutputItem = { type: 'audio'; samples: Int16Array } | { type: 'transcript'; transcript: Transcript }
 export type OutputGate = (item: OutputItem, deliver: (item: OutputItem) => void) => void
 export const immediateOutput: OutputGate = (item, deliver) => deliver(item)
-export interface TranscriptLine extends Transcript { id: string }
+export type TranscriptLine = EvidenceLine
 interface CopilotState {
   status: LiveStatus
   transcript: TranscriptLine[]
@@ -27,6 +29,7 @@ let microphone: MicrophoneCapture | null = null
 let player: PcmPlayer | null = null
 let sessionGeneration = 0
 let lineId = 0
+let pendingEvidence: ToolLogEntry[] = []
 
 export const useCopilot = create<CopilotState>((set, get) => ({
   status: 'idle', transcript: [], mode: 'text', muted: false, lastError: null, outputGate: immediateOutput,
@@ -36,19 +39,21 @@ export const useCopilot = create<CopilotState>((set, get) => ({
     if (session) return
     const generation = ++sessionGeneration
     const current = new LiveSession(); session = current
+    pendingEvidence = []
     current.on('onStatus', (status) => { if (generation === sessionGeneration) set({ status }) })
     current.on('onError', (error) => { if (generation === sessionGeneration) set({ lastError: error.code }) })
     current.on('onInterrupted', () => { if (generation === sessionGeneration) player?.flush() })
+    current.on('onToolCall', (call, result) => {
+      if (generation === sessionGeneration) pendingEvidence.push({ id: call.id, at: Date.now(), name: call.name, args: call.args, result })
+    })
     const deliver = (item: OutputItem) => {
       if (generation !== sessionGeneration) return
       if (item.type === 'audio') { if (!get().muted) { player ??= new PcmPlayer(); player.play(item.samples) }; return }
       const t = item.transcript
       set((state) => {
-        const lines = [...state.transcript]
-        const index = lines.findIndex((line) => line.role === t.role && !line.final)
-        if (index >= 0) lines[index] = { ...lines[index], ...t }
-        else lines.push({ ...t, id: String(++lineId) })
-        return { transcript: lines }
+        const updated = associateEvidence(state.transcript, t, pendingEvidence, String(++lineId))
+        pendingEvidence = updated.pending
+        return { transcript: updated.lines }
       })
     }
     current.on('onAudio', (samples) => get().outputGate({ type: 'audio', samples }, deliver))
@@ -63,12 +68,13 @@ export const useCopilot = create<CopilotState>((set, get) => ({
       set({ mode: 'voice' })
     } catch { if (generation === sessionGeneration) { microphone = null; set({ mode: 'text', lastError: 'microphone' }) } }
   },
-  stop: () => { ++sessionGeneration; session?.close(); session = null; void microphone?.close(); microphone = null; void player?.close(); player = null; set({ status: 'closed' }) },
+  stop: () => { ++sessionGeneration; pendingEvidence = []; session?.close(); session = null; void microphone?.close(); microphone = null; void player?.close(); player = null; set({ status: 'closed' }) },
   sendText: (text) => {
     if (!text.trim() || !session) return
+    pendingEvidence = []
     session.sendText(text)
-    set((state) => ({ transcript: [...state.transcript, { id: String(++lineId), role: 'user', text, final: true }] }))
+    set((state) => ({ transcript: [...state.transcript, { id: String(++lineId), role: 'user', text, final: true, evidence: [] }] }))
   },
-  pttDown: () => { if (session && microphone) { session.startTalking(); microphone.start() } },
+  pttDown: () => { if (session && microphone) { pendingEvidence = []; session.startTalking(); microphone.start() } },
   pttUp: () => { if (session && microphone) { microphone.stop(); session.stopTalking() } },
 }))

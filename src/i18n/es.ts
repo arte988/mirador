@@ -2,6 +2,22 @@ import type { Messages } from './en'
 
 /** Latin American Spanish. Typed against en.ts so a missing key is a compile error. */
 export const es: Messages = {
+  copilot: {
+    title: 'CAPCOM', badge: 'Asistente de IA, no son reglas de vuelo de la NASA', open: 'Abrir CAPCOM', close: 'Cerrar panel CAPCOM',
+    connect: 'Iniciar sesión', disconnect: 'Terminar sesión', mute: 'Silenciar altavoz', unmute: 'Activar altavoz',
+    hold: 'Mantén para hablar', listening: 'Escuchando: suelta para enviar', pttLabel: 'Mantén pulsado para hablar, suelta para enviar',
+    textLabel: 'Mensaje para CAPCOM', send: 'Enviar', transcript: 'Conversación', partial: 'En curso',
+    empty: 'Inicia una sesión para preguntar a CAPCOM sobre el plan.', evidence: 'Evidencia', noData: 'Sin datos', unknownAge: 'Antigüedad desconocida',
+    seconds: '{{value}} s', minutes: '{{value}} min', hours: '{{value}} h', days: '{{value}} d',
+    log: 'Registro de herramientas', noCalls: 'Aún no hay llamadas.', arguments: 'Argumentos', result: 'Resultado', ok: 'Disponible',
+    proposal: 'Ruta de aborto propuesta', proposalNote: 'Línea blanca discontinua en el mapa. Es una propuesta; el aborto no ha comenzado.',
+    target: 'Refugio', travelTime: 'Tiempo de trayecto', distance: 'Distancia', fits: 'Cabe en el tiempo restante',
+    budgetNote: 'Solo tiempo; no comprueba oxígeno ni batería.', confirm: 'Confirmar aborto', dismiss: 'Descartar propuesta',
+    staleProposal: 'La propuesta caducó porque avanzó la simulación. Pide a CAPCOM una ruta nueva.',
+    status: { idle: 'Inactivo', connecting: 'Conectando', ready: 'Listo', listening: 'Escuchando', thinking: 'Pensando', speaking: 'Hablando', error: 'Error', closed: 'Desconectado' },
+    errors: { no_key: 'El copiloto no está configurado en este servidor.', rate_limit: 'Demasiadas solicitudes. Inténtalo más tarde.', forbidden: 'Este origen no está permitido.', network: 'Falló la conexión. Comprueba la red.', upstream: 'El servicio del copiloto no está disponible.', protocol: 'El servicio envió un mensaje ilegible.', timeout: 'La conexión agotó el tiempo.', closed: 'Sesión desconectada.', microphone: 'Micrófono no disponible o permiso denegado. Puedes usar texto.' },
+    tools: { get_status: 'Estado', get_safety: 'Seguridad', can_continue: 'Regreso', propose_abort: 'Propuesta de aborto', get_space_weather: 'Clima espacial', get_forecast: 'Pronóstico', comms_delay: 'Retraso de comunicaciones', light_check: 'Luz solar', los_check: 'Línea de visión' },
+  },
   app: {
     name: 'AEOLIS',
     tagline: 'Un mapa hiperlocal de Marte en capas para planear y caminar una EVA científica segura en Mount Sharp.',

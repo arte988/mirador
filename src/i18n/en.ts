@@ -1,5 +1,21 @@
 /** English is the source of truth for every visible string. Spanish lives in es.ts. */
 export const en = {
+  copilot: {
+    title: 'CAPCOM', badge: 'AI assistant, not NASA flight rules', open: 'Open CAPCOM', close: 'Close CAPCOM panel',
+    connect: 'Start session', disconnect: 'Stop session', mute: 'Mute speaker', unmute: 'Unmute speaker',
+    hold: 'Hold to talk', listening: 'Listening — release to send', pttLabel: 'Hold to talk, release to send',
+    textLabel: 'Message CAPCOM', send: 'Send', transcript: 'Conversation', partial: 'In progress',
+    empty: 'Start a session to ask CAPCOM about the plan.', evidence: 'Evidence', noData: 'No data', unknownAge: 'Age unknown',
+    seconds: '{{value}} s', minutes: '{{value}} min', hours: '{{value}} h', days: '{{value}} d',
+    log: 'Tool-call log', noCalls: 'No tool calls yet.', arguments: 'Arguments', result: 'Result', ok: 'Available',
+    proposal: 'Proposed abort route', proposalNote: 'White dashed line on map. Proposal only; no abort has started.',
+    target: 'Refuge', travelTime: 'Travel time', distance: 'Distance', fits: 'Fits remaining time budget',
+    budgetNote: 'Time budget only; not an oxygen or battery check.', confirm: 'Confirm abort', dismiss: 'Dismiss proposal',
+    staleProposal: 'Proposal expired because the simulation moved. Ask CAPCOM for a new route.',
+    status: { idle: 'Idle', connecting: 'Connecting', ready: 'Ready', listening: 'Listening', thinking: 'Thinking', speaking: 'Speaking', error: 'Error', closed: 'Disconnected' },
+    errors: { no_key: 'Copilot not configured on this server.', rate_limit: 'Too many requests. Try again later.', forbidden: 'This origin is not allowed.', network: 'Connection failed. Check the network.', upstream: 'The copilot service is unavailable.', protocol: 'The service sent an unreadable message.', timeout: 'Connection timed out.', closed: 'Session disconnected.', microphone: 'Microphone unavailable or denied. Text mode is available.' },
+    tools: { get_status: 'Status', get_safety: 'Safety', can_continue: 'Walk-back', propose_abort: 'Abort proposal', get_space_weather: 'Space weather', get_forecast: 'Forecast', comms_delay: 'Comms delay', light_check: 'Sunlight', los_check: 'Line of sight' },
+  },
   app: {
     name: 'AEOLIS',
     tagline: 'A hyperlocal layered Mars map to plan and walk a safe science EVA on Mount Sharp.',

@@ -7,6 +7,7 @@ import Checklist from '../eva/Checklist.tsx'
 import ShareCard from '../eva/ShareCard.tsx'
 import WalkControls from '../eva/WalkControls.tsx'
 import MarsMap from '../map/MarsMap.tsx'
+import CopilotDock from '../copilot/CopilotDock.tsx'
 import { SafetyBadge } from '../safety/SafetyPanel.tsx'
 import Sheet from './Sheet.tsx'
 
@@ -34,6 +35,7 @@ export default function WalkLayout() {
         )}
         <div className="relative min-h-0 flex-1">
           <MarsMap />
+          <CopilotDock />
           <Sheet />
         </div>
       </div>

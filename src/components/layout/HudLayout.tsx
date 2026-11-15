@@ -13,6 +13,7 @@ import { useSafetyEngine } from '../../lib/useSafety.ts'
 import { useSimView } from '../../lib/useSim.ts'
 import { useMissionStore } from '../../stores/useMissionStore.ts'
 import MarsMap from '../map/MarsMap.tsx'
+import CopilotDock from '../copilot/CopilotDock.tsx'
 import { LEVEL_STYLE } from '../safety/SafetyPanel.tsx'
 
 export default function HudLayout() {
@@ -47,6 +48,7 @@ export default function HudLayout() {
       <div className="hud-map h-full">
         <MarsMap />
       </div>
+      <CopilotDock compact />
       <div className="pointer-events-none absolute inset-0 flex min-h-0 flex-col gap-2 p-3">
         <div className="pointer-events-auto flex shrink-0 items-start justify-between gap-2 pl-12">
           <p className={`rounded-lg border px-3 py-1 text-lg font-extrabold uppercase tracking-wider ${st.border} ${st.bg} ${st.text}`} role="status">

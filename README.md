@@ -114,8 +114,11 @@ best-effort, per-instance basis; serverless instances do not share counters. CAP
 flight rules or certification. Browser tools now expose simulation, safety, feeds, forecast, light, communications
 and terrain calculations with source and age metadata. Missing inputs stay unavailable; cached, snapshot and
 simulated feeds are labeled. An abort proposal is stored for explicit user confirmation and does not start the walk;
-its budget comparison covers time only. The session client supports push-to-talk, text fallback, audio playback,
-transcripts and a replaceable output gate. The voice panel and confirmation UI remain to be implemented.
+its budget comparison covers time only. Open CAPCOM on Walk or HUD, start a session, then hold the talk button
+(or hold Space while it has focus); release to send. Text input is available if the microphone is unavailable,
+and the speaker can be muted. Answers show their tool evidence and ages; expand the tool-call log for details.
+Abort proposals appear as a white dashed line on the map and require an explicit Confirm; Dismiss removes them.
+A proposal is rejected if the simulation clock has advanced. The session client also has a replaceable output gate.
 Session resumption is attempted once with a fresh token and a resumable handle; because the token locks the setup,
 whether Gemini accepts that handle requires a live check and resumption is not guaranteed.
 

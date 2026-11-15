@@ -75,6 +75,11 @@ export const abortStyle: StyleLike = [
   new Style({ stroke: new Stroke({ color: AMBER, width: 5, lineDash: [12, 8] }), zIndex: 41 }),
 ]
 
+export const proposedAbortStyle: StyleLike = [
+  new Style({ stroke: new Stroke({ color: INK, width: 8 }), zIndex: 42 }),
+  new Style({ stroke: new Stroke({ color: WHITE, width: 4, lineDash: [4, 8] }), zIndex: 43 }),
+]
+
 export const noGoStyle: StyleLike = new Style({
   stroke: new Stroke({ color: RED, width: 2, lineDash: [8, 6] }),
   fill: new Fill({ color: 'rgba(255,90,95,0.22)' }),
