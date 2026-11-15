@@ -17,8 +17,8 @@ try {
   process.exitCode = 1
 }
 
-// A few image sols so the POV panel still shows something offline (boxwork campaign range ends and middle, plus Perseverance).
-for (const [mission, sol] of [['msl', 4451], ['msl', 4500], ['msl', 4550], ['mars2020', 2031]]) {
+// One image sol from each of phases 1, 3 and 4: https://science.nasa.gov/blog/curiosity-blog-sols-4804-4811-kicking-off-the-final-phase-of-boxwork-exploration/
+for (const [mission, sol] of [['msl', 4550], ['msl', 4700], ['msl', 4820], ['mars2020', 2031]]) {
   try {
     const img = { ...(await getImages(mission, sol)), source: 'snapshot' }
     writeFileSync(`public/snapshots/images-${mission}-${sol}.json`, JSON.stringify(img))

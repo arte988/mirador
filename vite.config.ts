@@ -1,12 +1,13 @@
 /// <reference types="vitest/config" />
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import { defineConfig, type Plugin } from 'vite'
+import { defineConfig, loadEnv, type Plugin } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import { getDonki, getImages, getWeather, isMission, respond, type FnResponse } from './api/_nasa.ts'
+import { createLiveTokenHandler } from './api/live-token.ts'
 
 /** Serves /api/weather, /api/donki and /api/images in `vite dev` with the same code the Vercel functions run. */
-function devApi(): Plugin {
+function devApi(mode: string): Plugin {
   const routes: Record<string, (q: URLSearchParams) => Promise<unknown>> = {
     '/api/weather': () => getWeather(),
     '/api/donki': () => getDonki(),
@@ -18,10 +19,11 @@ function devApi(): Plugin {
   return {
     name: 'mirador-dev-api',
     configureServer(server) {
+      const tokenHandler = createLiveTokenHandler({ GEMINI_API_KEY: process.env.GEMINI_API_KEY || loadEnv(mode, process.cwd(), '').GEMINI_API_KEY })
       server.middlewares.use((req, res, next) => {
         const [path, qs = ''] = (req.url ?? '').split('?')
         const load = routes[path]
-        if (!load) return next()
+        if (!load && path !== '/api/live-token') return next()
         const fn: FnResponse = {
           status(code) {
             res.statusCode = code
@@ -35,18 +37,19 @@ function devApi(): Plugin {
             res.end(JSON.stringify(body))
           },
         }
-        void respond(fn, () => load(new URLSearchParams(qs)))
+        if (path === '/api/live-token') void tokenHandler(req, fn)
+        else void respond(fn, () => load(new URLSearchParams(qs)))
       })
     },
   }
 }
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     tailwindcss(),
-    devApi(),
+    devApi(mode),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'dtm/gale_aoi_4m.bin', 'dtm/gale_aoi_4m.json'],
@@ -104,4 +107,4 @@ export default defineConfig({
     environment: 'node',
     include: ['src/**/*.test.ts'],
   },
-})
+}))

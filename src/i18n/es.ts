@@ -141,7 +141,7 @@ export const es: Messages = {
     },
     sol: 'Sol',
     range: {
-      msl: 'El rango por defecto es de unos soles 4451 a 4550, la campaña boxwork aproximada (por verificar con las notas de la misión).',
+      msl: 'NASA Science describe la campaña boxwork desde el sol 4534 hasta aproximadamente el sol 4844; el final es aproximado.',
       mars2020: 'Los 100 soles hasta el más reciente conocido al construir la app. Aquí no hay campaña boxwork.',
     },
     loading: 'Cargando imágenes...',

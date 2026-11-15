@@ -1,6 +1,6 @@
 import { getImages, isMission, respond, type FnRequest, type FnResponse } from './_nasa.js'
 
-/** GET /api/images?mission=msl|mars2020&sol=4451 */
+/** GET /api/images?mission=msl|mars2020&sol=4700 */
 export default async function handler(req: FnRequest, res: FnResponse): Promise<void> {
   const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v)
   const mission = one(req.query?.mission) ?? 'msl'

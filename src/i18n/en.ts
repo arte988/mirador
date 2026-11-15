@@ -139,7 +139,7 @@ export const en = {
     },
     sol: 'Sol',
     range: {
-      msl: 'Default range is about sols 4451 to 4550, the approximate boxwork campaign (to verify against the mission notes).',
+      msl: 'NASA Science describes the boxwork campaign from sol 4534 to approximately sol 4844; the end is approximate.',
       mars2020: 'The 100 sols up to the newest one known when this app was built. There is no boxwork campaign here.',
     },
     loading: 'Loading images...',
