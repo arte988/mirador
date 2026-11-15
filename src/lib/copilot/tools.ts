@@ -123,14 +123,14 @@ export async function runCopilotTool(name: CopilotToolName, _args: unknown, ctx:
   return handler ? handler(ctx) : fail('MIRADOR copilot', 'unknown tool')
 }
 
-export async function liveCopilotContext(): Promise<CopilotContext> {
+export async function liveCopilotContext(options: { includeForecast?: boolean } = {}): Promise<CopilotContext> {
   const st = useMissionStore.getState()
   const now = Date.now()
   const params = effectiveParams(st.params, st.scenario)
   const sim = simulate({ routes: st.routes, selectedProfile: st.selectedProfile, elapsedS: st.elapsedS, abortRoute: st.abortRoute, aborting: st.walkStatus === 'aborting', buddyRole: st.buddyRole, params, rover: SUPPORT_ROVER.lonLat })
   const plan = usePlanData.getState()
   const back = sim ? backTimeAt(sim.position, plan.back, plan.grid) : Infinity
-  return { now, simTime: st.scenarioTimeMs === null ? now : st.scenarioTimeMs + st.elapsedS * 1000, sim, elapsedS: st.elapsedS, walkStatus: st.walkStatus, selectedProfile: st.selectedProfile, route: st.routes[st.selectedProfile] ?? null, currentBackS: Number.isFinite(back) ? back : null, params, safety: st.safety, weather: st.weather, space: st.space, forecast: await loadForecast(), dtm: getDtm(), computeAbort: computeAbortRoute, saveProposal: useCopilotStore.getState().setPendingAbort }
+  return { now, simTime: st.scenarioTimeMs === null ? now : st.scenarioTimeMs + st.elapsedS * 1000, sim, elapsedS: st.elapsedS, walkStatus: st.walkStatus, selectedProfile: st.selectedProfile, route: st.routes[st.selectedProfile] ?? null, currentBackS: Number.isFinite(back) ? back : null, params, safety: st.safety, weather: st.weather, space: st.space, forecast: options.includeForecast === false ? { data: null, cached: false } : await loadForecast(), dtm: getDtm(), computeAbort: computeAbortRoute, saveProposal: useCopilotStore.getState().setPendingAbort }
 }
 
 export async function executeToolCall(call: { id: string; name: string; args?: unknown }, context?: CopilotContext): Promise<ToolResult> {

@@ -1,6 +1,12 @@
 /** English is the source of truth for every visible string. Spanish lives in es.ts. */
 export const en = {
   copilot: {
+    commsMode: 'Communications mode', earthMode: 'Mission Control (Earth)', onboardMode: 'Onboard autonomous',
+    delayStatus: 'Signal en route to Earth… {{real}} real round trip, compressed ×60 → {{seconds}} s remaining.',
+    delayExplain: 'Demo choice: the real round trip is compressed by 60. New requests wait until delivery; stopping the session cancels pending output.',
+    delaySource: 'JPL SSD Keplerian elements (approximate)',
+    fallbackTitle: 'Deterministic check — no AI', fallbackButton: 'Can I continue?', fallbackLoading: 'Checking local data…',
+    fallbackHelp: 'Computed from the same local planning and safety tools. No model is used.', fallbackMargin: 'Current walk-back margin', fallbackTotal: 'Planned duration', fallbackFits: 'Fits time budget', fallbackPnr: 'Point of no return', fallbackPnrYes: 'Present', fallbackPnrNo: 'None in plan', fallbackDelay: 'One-way light time', fallbackSafety: 'Safety level',
     title: 'CAPCOM', badge: 'AI assistant, not NASA flight rules', open: 'Open CAPCOM', close: 'Close CAPCOM panel',
     connect: 'Start session', disconnect: 'Stop session', mute: 'Mute speaker', unmute: 'Unmute speaker',
     hold: 'Hold to talk', listening: 'Listening — release to send', pttLabel: 'Hold to talk, release to send',

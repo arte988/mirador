@@ -119,6 +119,13 @@ its budget comparison covers time only. Open CAPCOM on Walk or HUD, start a sess
 and the speaker can be muted. Answers show their tool evidence and ages; expand the tool-call log for details.
 Abort proposals appear as a white dashed line on the map and require an explicit Confirm; Dismiss removes them.
 A proposal is rejected if the simulation clock has advanced. The session client also has a replaceable output gate.
+Choose **Onboard autonomous** for immediate output or **Mission Control (Earth)** to delay each answer by the
+estimated Earth–Mars round trip at the simulation date, divided by 60 for the demo. The countdown also shows the
+uncompressed round trip, calculated from [JPL SSD's approximate Keplerian elements](https://ssd.jpl.nasa.gov/planets/approx_pos.html).
+While a signal is pending, new requests and mode changes wait; stopping the session discards queued output. This is
+an interface simulation, not a claim that the model runs on Earth or Mars. If the AI session is unavailable, the
+**Can I continue?** card runs local route, safety and light-time tools without an LLM, retaining missing-data and
+source/age labels. It is also available on demand and remains a planning aid, not a flight rule.
 Session resumption is attempted once with a fresh token and a resumable handle; because the token locks the setup,
 whether Gemini accepts that handle requires a live check and resumption is not guaranteed.
 

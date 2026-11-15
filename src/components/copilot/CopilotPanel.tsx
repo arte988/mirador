@@ -4,9 +4,11 @@ import { TOOL_NAMES, type CopilotToolName } from '../../../api/_copilot.ts'
 import { HABITAT, SUPPORT_ROVER } from '../../data/sites.ts'
 import { ageParts } from '../../lib/copilot/evidence.ts'
 import { confirmAbort, dismissAbort, useCopilotStore } from '../../lib/copilot/proposal.ts'
-import { useToolLog, type ToolLogEntry } from '../../lib/copilot/toolLog.ts'
+import type { ToolLogEntry } from '../../lib/copilot/toolLog.ts'
+import { useProposalVisibility } from '../../lib/copilot/visibility.ts'
 import { useCopilot } from '../../lib/copilot/useCopilot.ts'
 import { fmtDuration, fmtKm } from '../../lib/format.ts'
+import FallbackCard from './FallbackCard.tsx'
 
 function ToolName({ name }: { name: string }) {
   const { t } = useTranslation()
@@ -29,14 +31,18 @@ export default function CopilotPanel({ compact = false }: { compact?: boolean })
   const [expanded, setExpanded] = useState(false)
   const [text, setText] = useState('')
   const [stale, setStale] = useState(false)
+  const [offline, setOffline] = useState(() => typeof navigator !== 'undefined' && !navigator.onLine)
+  const [clockNow, setClockNow] = useState(Date.now)
   const holding = useRef(false)
   const transcriptEnd = useRef<HTMLDivElement>(null)
   const state = useCopilot()
-  const entries = useToolLog((s) => s.entries)
-  const pending = useCopilotStore((s) => s.pendingAbort)
+  const entries = state.visibleCalls
+  const pendingRoute = useCopilotStore((s) => s.pendingAbort)
+  const revealed = useProposalVisibility((s) => s.revealed)
+  const pending = pendingRoute && pendingRoute === revealed ? pendingRoute : null
   const sessionActive = !['idle', 'closed', 'error'].includes(state.status)
-  const canInput = ['ready', 'speaking', 'thinking', 'listening'].includes(state.status)
-  const canTalk = canInput && state.mode === 'voice'
+  const canInput = !state.delay && ['ready', 'speaking'].includes(state.status)
+  const canTalk = !state.delay && ['ready', 'speaking', 'listening'].includes(state.status) && state.mode === 'voice'
   const latest = [...entries].reverse().find((entry) => {
     const value = proposalValue(entry)
     return pending && value && value.timeS === pending.timeS && value.distanceM === pending.analysis.profile.length && value.target === (pending.target === 'hab' ? HABITAT.name : SUPPORT_ROVER.name)
@@ -44,6 +50,17 @@ export default function CopilotPanel({ compact = false }: { compact?: boolean })
   const proposal = proposalValue(latest)
   useEffect(() => { if (expanded) transcriptEnd.current?.scrollIntoView({ block: 'nearest' }) }, [state.transcript, expanded])
   useEffect(() => () => { if (holding.current) useCopilot.getState().pttUp() }, [])
+  useEffect(() => {
+    if (!state.delay) return
+    const id = window.setInterval(() => setClockNow(Date.now()), 250)
+    return () => window.clearInterval(id)
+  }, [state.delay])
+  useEffect(() => {
+    const online = () => setOffline(!navigator.onLine)
+    window.addEventListener('online', online); window.addEventListener('offline', online)
+    return () => { window.removeEventListener('online', online); window.removeEventListener('offline', online) }
+  }, [])
+  useEffect(() => { if (offline) void useCopilot.getState().checkFallback() }, [offline])
   const down = () => { if (!holding.current && canTalk) { holding.current = true; state.pttDown() } }
   const up = () => { if (holding.current) { holding.current = false; state.pttUp() } }
   const submit = (event: FormEvent) => { event.preventDefault(); if (text.trim() && canInput) { state.sendText(text); setText('') } }
@@ -60,6 +77,17 @@ export default function CopilotPanel({ compact = false }: { compact?: boolean })
           <button type="button" className="btn min-h-11" aria-pressed={state.muted} onClick={() => state.setMuted(!state.muted)}>{t(state.muted ? 'copilot.unmute' : 'copilot.mute')}</button>
         </div>
         {state.lastError && <p role="alert" className="mt-2 rounded-lg border border-caution p-2 text-sm text-caution">{t(`copilot.errors.${state.lastError}`)}</p>}
+        <fieldset className="mt-3 rounded-lg border border-line p-2" disabled={!!state.delay || ['listening', 'thinking', 'speaking', 'connecting'].includes(state.status)}>
+          <legend className="px-1 text-sm font-semibold">{t('copilot.commsMode')}</legend>
+          <div className="flex flex-col gap-2 text-sm">
+            <label className="flex min-h-11 items-center gap-2"><input type="radio" name="copilot-comms" checked={state.commsMode === 'earth'} onChange={() => state.setCommsMode('earth')} />{t('copilot.earthMode')}</label>
+            <label className="flex min-h-11 items-center gap-2"><input type="radio" name="copilot-comms" checked={state.commsMode === 'onboard'} onChange={() => state.setCommsMode('onboard')} />{t('copilot.onboardMode')}</label>
+          </div>
+          {state.commsMode === 'earth' && <p className="text-xs text-muted">{t('copilot.delayExplain')} <a className="underline" href="https://ssd.jpl.nasa.gov/planets/approx_pos.html" target="_blank" rel="noreferrer">{t('copilot.delaySource')}</a></p>}
+        </fieldset>
+        {state.delay && <p role="status" className="mt-2 rounded-lg border border-line p-2 text-sm">{t('copilot.delayStatus', { real: fmtDuration(state.delay.realRttS), seconds: (Math.max(0, state.delay.deadline - Math.max(clockNow, state.delay.deadline - state.delay.realRttS * 1000 / 60)) / 1000).toFixed(1) })}</p>}
+        <button type="button" className="btn mt-3 min-h-11 w-full" disabled={state.fallbackLoading} onClick={() => void state.checkFallback()}>{t(state.fallbackLoading ? 'copilot.fallbackLoading' : 'copilot.fallbackButton')}</button>
+        {state.fallback && <FallbackCard data={state.fallback} />}
         <button type="button" className="btn btn-primary mt-3 min-h-14 w-full touch-none" disabled={!canTalk} aria-label={t('copilot.pttLabel')} aria-pressed={state.status === 'listening'}
           onPointerDown={(event) => { if (event.button === 0) { event.preventDefault(); event.currentTarget.setPointerCapture(event.pointerId); down() } }}
           onPointerUp={up} onPointerCancel={up} onLostPointerCapture={up} onBlur={up}

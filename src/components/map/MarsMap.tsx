@@ -24,6 +24,7 @@ import { useSimView } from '../../lib/useSim.ts'
 import { loadWmtsConfig, tileGridFor, tileUrl } from '../../lib/wmts.ts'
 import { useMissionStore } from '../../stores/useMissionStore.ts'
 import { useCopilotStore } from '../../lib/copilot/proposal.ts'
+import { useProposalVisibility } from '../../lib/copilot/visibility.ts'
 import { usePlanData } from '../../stores/usePlanData.ts'
 import { commsOverlay, envelopeOverlay, hillshadeOverlay, slopeOverlay, type OverlayImage } from './overlays.ts'
 import { createMarsView, marsProjection } from './olSetup.ts'
@@ -99,6 +100,7 @@ export default function MarsMap() {
   const selectedStopId = useMissionStore((s) => s.selectedStopId)
   const abortRoute = useMissionStore((s) => s.abortRoute)
   const proposedAbort = useCopilotStore((s) => s.pendingAbort)
+  const revealedAbort = useProposalVisibility((s) => s.revealed)
   const walkStatus = useMissionStore((s) => s.walkStatus)
   const scenarioTimeMs = useMissionStore((s) => s.scenarioTimeMs)
   const plan = usePlanData()
@@ -359,7 +361,7 @@ export default function MarsMap() {
     const sel = routes[selectedProfile]
     if (sel && sel.route.path.length > 1) add(new LineString(sel.route.path), routeStyle(true, selectedProfile))
     if (abortRoute && abortRoute.path.length > 1 && walkStatus === 'aborting') add(new LineString(abortRoute.path), abortStyle)
-    if (proposedAbort && proposedAbort.path.length > 1) add(new LineString(proposedAbort.path), proposedAbortStyle)
+    if (proposedAbort && proposedAbort === revealedAbort && proposedAbort.path.length > 1) add(new LineString(proposedAbort.path), proposedAbortStyle)
     if (profileLine.length > 1) add(new LineString(profileLine), profileLineStyle)
     if (sel?.walkBack.pointOfNoReturn) add(new Point(sel.walkBack.pointOfNoReturn.lonLat), pnrStyle)
 
@@ -393,7 +395,7 @@ export default function MarsMap() {
       add(new Point(sim.position), walkerStyle(sim.heading, reducedMotion()))
       if (sim.buddy) add(new Point(sim.buddy), buddyStyle())
     }
-  }, [routes, selectedProfile, noGo, draft, drawMode, profileLine, requiredStopIds, scienceStopIds, selectedStopId, abortRoute, proposedAbort, walkStatus, sim, ready])
+  }, [routes, selectedProfile, noGo, draft, drawMode, profileLine, requiredStopIds, scienceStopIds, selectedStopId, abortRoute, proposedAbort, revealedAbort, walkStatus, sim, ready])
 
   const geologyVisible = useMissionStore((s) => s.layers.find((l) => l.id === 'geology')?.visible ?? false)
   const cursorText = cursor ? formatLonLat(cursor.ll, 5) : formatLonLat(center, 5)

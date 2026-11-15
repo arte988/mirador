@@ -3,6 +3,12 @@ import type { Messages } from './en'
 /** Latin American Spanish. Typed against en.ts so a missing key is a compile error. */
 export const es: Messages = {
   copilot: {
+    commsMode: 'Modo de comunicaciones', earthMode: 'Control de misión (Tierra)', onboardMode: 'Autónomo a bordo',
+    delayStatus: 'Señal en camino a la Tierra… {{real}} de ida y vuelta real, comprimido ×60 → faltan {{seconds}} s.',
+    delayExplain: 'Para la demo, la ida y vuelta real se comprime 60 veces. Las nuevas solicitudes esperan; detener la sesión cancela la salida pendiente.',
+    delaySource: 'Elementos keplerianos de JPL SSD (aproximado)',
+    fallbackTitle: 'Comprobación determinista — sin IA', fallbackButton: '¿Puedo continuar?', fallbackLoading: 'Comprobando datos locales…',
+    fallbackHelp: 'Calculado con las mismas herramientas locales de planificación y seguridad. No se usa ningún modelo.', fallbackMargin: 'Margen actual de regreso', fallbackTotal: 'Duración del plan', fallbackFits: 'Cabe en el tiempo disponible', fallbackPnr: 'Punto de no retorno', fallbackPnrYes: 'Presente', fallbackPnrNo: 'Ninguno en el plan', fallbackDelay: 'Tiempo de luz de ida', fallbackSafety: 'Nivel de seguridad',
     title: 'CAPCOM', badge: 'Asistente de IA, no son reglas de vuelo de la NASA', open: 'Abrir CAPCOM', close: 'Cerrar panel CAPCOM',
     connect: 'Iniciar sesión', disconnect: 'Terminar sesión', mute: 'Silenciar altavoz', unmute: 'Activar altavoz',
     hold: 'Mantén para hablar', listening: 'Escuchando: suelta para enviar', pttLabel: 'Mantén pulsado para hablar, suelta para enviar',
