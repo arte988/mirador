@@ -296,7 +296,7 @@ export const es: Messages = {
     rules: {
       sep: 'Rojo si se reportó un evento de partículas solares energéticas (SEP) en las últimas {{red}} h. Ámbar en {{amber}} h.',
       notif: 'Ámbar si hubo una notificación de CME, llamarada, tormenta geomagnética, choque o cinturón de radiación en {{h}} h.',
-      impact: 'Ámbar si un impacto modelado de tormenta solar en Marte llega en unos 3 días (estimación de modelo, por verificar).',
+      impact: 'Ámbar por un impacto modelado en Marte, incluidos los rasantes o menores, desde hace 6 horas hasta dentro de 3 días (estimación de modelo, no medición).',
       weather: 'Ámbar si el último sol del clima tiene más de {{d}} días, si el UV es muy alto o si el cielo se reporta con polvo o bruma.',
       daylight: 'Rojo si el Sol se pone antes de terminar la ruta más la reserva. Ámbar si queda menos de 1 h de margen.',
       unknown: 'Ámbar si no se pueden cargar los datos del clima o del clima espacial, o solo hay una instantánea vieja.',

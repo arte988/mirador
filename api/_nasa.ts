@@ -114,6 +114,8 @@ export function normalizeDonki(
 ): DonkiPayload {
   const arr = (v: unknown): Record<string, unknown>[] => (Array.isArray(v) ? (v as Record<string, unknown>[]) : [])
   const marsImpacts: DonkiPayload['marsImpacts'] = []
+  // DONKI Impact schema: https://ccmc.gsfc.nasa.gov/DONKI/api/openapi/
+  // Include every listed Mars impact, including glancing and minor predictions; the flags qualify the impact.
   for (const sim of arr(enlil)) {
     for (const imp of arr(sim.impactList)) {
       if (imp.location !== 'Mars' || typeof imp.arrivalTime !== 'string') continue

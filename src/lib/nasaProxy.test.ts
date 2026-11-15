@@ -35,6 +35,22 @@ describe('proxy normalization', () => {
     expect(p.marsImpacts).toHaveLength(1)
     expect(p.marsImpacts[0].glancing).toBe(true)
   })
+  it('includes direct, glancing and minor Mars predictions in the amber rule', () => {
+    // Real DONKI WSA-ENLIL response entries: https://api.nasa.gov/DONKI/WSAEnlilSimulations?startDate=2024-07-01&endDate=2024-08-01&api_key=DEMO_KEY
+    const examples = [
+      { simulationID: 'WSA-ENLIL/31778/1', modelCompletionTime: '2024-07-01T13:02Z', impactList: [{ location: 'Mars', arrivalTime: '2024-07-05T06:08Z', isGlancingBlow: false, isMinorImpact: false }] },
+      { simulationID: 'WSA-ENLIL/31812/1', modelCompletionTime: '2024-07-03T18:22Z', impactList: [{ location: 'Mars', arrivalTime: '2024-07-07T16:00Z', isGlancingBlow: true, isMinorImpact: false }] },
+      { simulationID: 'WSA-ENLIL/32081/1', modelCompletionTime: '2024-07-21T16:56Z', impactList: [{ location: 'Mars', arrivalTime: '2024-07-25T08:00Z', isGlancingBlow: false, isMinorImpact: true }] },
+    ]
+    for (const sim of examples) {
+      const now = Date.parse(sim.impactList[0].arrivalTime) - 3600000
+      const normalized = normalizeDonki([], [], [sim], now)
+      expect(normalized.marsImpacts[0]).toMatchObject({ glancing: sim.impactList[0].isGlancingBlow, minor: sim.impactList[0].isMinorImpact })
+      const summary = summarizeDonki(normalized, now)
+      expect(summary.marsImpactSoon).toBe(true)
+      expect(evaluateSafety({ weather: { ageDays: 0, minTempC: null, maxTempC: null, uvIndex: null, opacity: null }, space: { ...summary, unknown: false }, scenario: { dustStorm: false, sepAlert: false, o2Leak: false }, stormFlag: false, daylightMin: Infinity, routeNeedMin: 0 }).reasons).toContainEqual({ id: 'mars-impact', level: 'amber', key: 'marsImpact', params: undefined })
+    }
+  })
   it('answers 502 with no-store when upstream fails', async () => {
     let status = 0
     const headers: Record<string, string> = {}

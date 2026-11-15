@@ -96,7 +96,12 @@ The browser never talks to NASA's weather or DONKI endpoints with a secret. It c
 The semaphore rules are listed in the panel and in `src/lib/safety.ts` (SEP within 24 h is red, within 72 h amber,
 solar notifications within 48 h amber, weather older than 7 days amber, daylight versus route need, and scenario
 flags). They are prototype planning assumptions, not NASA flight rules. DONKI is a heliophysics event list and
-model-run feed, not a radiation measurement at Gale. The Mars-impact rule uses WSA-ENLIL model estimates (to verify).
+model-run feed, not a radiation measurement at Gale. The Mars-impact rule includes `impactList` entries with
+`location` equal to `Mars` and an arrival time, including entries flagged as glancing or minor. The
+[DONKI API schema](https://ccmc.gsfc.nasa.gov/DONKI/api/openapi/) describes these fields; the
+[DONKI overview](https://ccmc.gsfc.nasa.gov/tools/DONKI/) identifies WSA-ENLIL results as model outputs.
+MIRADOR's amber window (6 hours before now through 72 hours ahead) is a prototype planning assumption, not a
+DONKI threshold or a measurement of surface radiation.
 
 The **scenario injector** (dust storm, SEP alert, O2 leak) exists because live data is usually calm. Everything it
 does is labeled as a simulation in the panel and in the safety badge.

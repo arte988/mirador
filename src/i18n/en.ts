@@ -294,7 +294,7 @@ export const en = {
     rules: {
       sep: 'Red if a solar energetic particle (SEP) event was reported within {{red}} h. Amber within {{amber}} h.',
       notif: 'Amber if a CME, flare, geomagnetic storm, shock or radiation belt notification appeared within {{h}} h.',
-      impact: 'Amber if a modeled solar storm impact at Mars is due within about 3 days (model estimate, to verify).',
+      impact: 'Amber for a modeled Mars impact, including glancing or minor impacts, from 6 hours ago to 3 days ahead (model estimate, not a measurement).',
       weather: 'Amber if the latest weather sol is older than {{d}} days, if UV is very high, or if the sky is reported dusty or hazy.',
       daylight: 'Red if the Sun sets before the route plus reserve is done. Amber if there is less than 1 h of margin.',
       unknown: 'Amber if the weather or space weather data cannot be loaded, or only an old snapshot is available.',
