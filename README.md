@@ -105,7 +105,7 @@ DONKI threshold or a measurement of surface radiation.
 
 ### AI copilot (Gemini Live)
 
-The token endpoint prepares a constrained Gemini Live session; the future voice client will connect directly to
+The token endpoint prepares a constrained Gemini Live session; the session client connects directly to
 Gemini using a short-lived, single-use token. Set `GEMINI_API_KEY` on the server and in the Vercel project; obtain
 one from [Google AI Studio](https://aistudio.google.com/apikey). Vite loads it server-side for local development.
 The API key is never sent to the browser. See Google's [ephemeral token documentation](https://ai.google.dev/gemini-api/docs/ephemeral-tokens).
@@ -114,7 +114,14 @@ best-effort, per-instance basis; serverless instances do not share counters. CAP
 flight rules or certification. Browser tools now expose simulation, safety, feeds, forecast, light, communications
 and terrain calculations with source and age metadata. Missing inputs stay unavailable; cached, snapshot and
 simulated feeds are labeled. An abort proposal is stored for explicit user confirmation and does not start the walk;
-its budget comparison covers time only. The voice interface and confirmation UI remain to be implemented.
+its budget comparison covers time only. The session client supports push-to-talk, text fallback, audio playback,
+transcripts and a replaceable output gate. The voice panel and confirmation UI remain to be implemented.
+Session resumption is attempted once with a fresh token and a resumable handle; because the token locks the setup,
+whether Gemini accepts that handle requires a live check and resumption is not guaranteed.
+
+For an optional manual smoke test, set the server key in the process environment and run
+`node scripts/copilot-live-check.mts`. This contacts Gemini and may incur usage; it prints statuses, tool names and
+transcripts with credential redaction. It uses a stub tool and does not test the real EVA data tools.
 
 The **scenario injector** (dust storm, SEP alert, O2 leak) exists because live data is usually calm. Everything it
 does is labeled as a simulation in the panel and in the safety badge.

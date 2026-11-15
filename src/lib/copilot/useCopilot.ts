@@ -1,0 +1,74 @@
+import { create } from 'zustand'
+import { LiveSession, type LiveErrorCode, type LiveStatus, type Transcript } from './liveClient.ts'
+import { MicrophoneCapture, PcmPlayer } from './audio.ts'
+
+export type OutputItem = { type: 'audio'; samples: Int16Array } | { type: 'transcript'; transcript: Transcript }
+export type OutputGate = (item: OutputItem, deliver: (item: OutputItem) => void) => void
+export const immediateOutput: OutputGate = (item, deliver) => deliver(item)
+export interface TranscriptLine extends Transcript { id: string }
+interface CopilotState {
+  status: LiveStatus
+  transcript: TranscriptLine[]
+  mode: 'voice' | 'text'
+  muted: boolean
+  lastError: LiveErrorCode | 'microphone' | null
+  outputGate: OutputGate
+  setOutputGate: (gate: OutputGate) => void
+  setMuted: (muted: boolean) => void
+  start: () => Promise<void>
+  stop: () => void
+  sendText: (text: string) => void
+  pttDown: () => void
+  pttUp: () => void
+}
+
+let session: LiveSession | null = null
+let microphone: MicrophoneCapture | null = null
+let player: PcmPlayer | null = null
+let sessionGeneration = 0
+let lineId = 0
+
+export const useCopilot = create<CopilotState>((set, get) => ({
+  status: 'idle', transcript: [], mode: 'text', muted: false, lastError: null, outputGate: immediateOutput,
+  setOutputGate: (outputGate) => set({ outputGate }),
+  setMuted: (muted) => { set({ muted }); if (muted) player?.flush() },
+  start: async () => {
+    if (session) return
+    const generation = ++sessionGeneration
+    const current = new LiveSession(); session = current
+    current.on('onStatus', (status) => { if (generation === sessionGeneration) set({ status }) })
+    current.on('onError', (error) => { if (generation === sessionGeneration) set({ lastError: error.code }) })
+    current.on('onInterrupted', () => { if (generation === sessionGeneration) player?.flush() })
+    const deliver = (item: OutputItem) => {
+      if (generation !== sessionGeneration) return
+      if (item.type === 'audio') { if (!get().muted) { player ??= new PcmPlayer(); player.play(item.samples) }; return }
+      const t = item.transcript
+      set((state) => {
+        const lines = [...state.transcript]
+        const index = lines.findIndex((line) => line.role === t.role && !line.final)
+        if (index >= 0) lines[index] = { ...lines[index], ...t }
+        else lines.push({ ...t, id: String(++lineId) })
+        return { transcript: lines }
+      })
+    }
+    current.on('onAudio', (samples) => get().outputGate({ type: 'audio', samples }, deliver))
+    current.on('onTranscript', (transcript) => get().outputGate({ type: 'transcript', transcript }, deliver))
+    set({ lastError: null, mode: 'text' })
+    try { await current.connect() } catch { if (session === current) { session = null; current.close() }; return }
+    if (generation !== sessionGeneration) return
+    const mic = new MicrophoneCapture(); microphone = mic
+    try {
+      await mic.open((pcm) => { if (generation === sessionGeneration && current.status === 'listening') current.sendAudioChunk(pcm) })
+      if (generation !== sessionGeneration) { await mic.close(); return }
+      set({ mode: 'voice' })
+    } catch { if (generation === sessionGeneration) { microphone = null; set({ mode: 'text', lastError: 'microphone' }) } }
+  },
+  stop: () => { ++sessionGeneration; session?.close(); session = null; void microphone?.close(); microphone = null; void player?.close(); player = null; set({ status: 'closed' }) },
+  sendText: (text) => {
+    if (!text.trim() || !session) return
+    session.sendText(text)
+    set((state) => ({ transcript: [...state.transcript, { id: String(++lineId), role: 'user', text, final: true }] }))
+  },
+  pttDown: () => { if (session && microphone) { session.startTalking(); microphone.start() } },
+  pttUp: () => { if (session && microphone) { microphone.stop(); session.stopTalking() } },
+}))
