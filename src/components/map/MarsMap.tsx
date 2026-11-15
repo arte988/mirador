@@ -124,10 +124,15 @@ export default function MarsMap() {
       if (c) setCenter([c[0], c[1]])
       setResolution(map.getView().getResolution() ?? 0.0001)
     })
+    map.on('dblclick', (e) => {
+      if (useMissionStore.getState().drawMode !== 'none') e.preventDefault()
+    })
     map.on('click', (e) => {
       const st = useMissionStore.getState()
       const ll: LonLat = [e.coordinate[0], e.coordinate[1]]
       if (st.drawMode !== 'none') {
+        const detail = (e.originalEvent as MouseEvent | undefined)?.detail ?? 1
+        if (detail > 1) return
         st.addDraftPoint(ll)
         return
       }

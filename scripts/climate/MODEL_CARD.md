@@ -15,7 +15,7 @@ Zero-shot forecast. No covariates and no fine-tune. The model is a statistical f
 
 Backtest: last 14 sols, one step ahead, context up to 256. Persistence is the previous sol. Climatology is the mean of training rows whose solar longitude is within 5 degrees, otherwise the mean of all training rows. A series is published only when TimesFM's MAE is strictly below persistence. Otherwise the quantiles stay empty.
 
-Run written at `2026-11-15T11:51:56Z` (`public/forecasts/gale.json`):
+Run written at `2026-11-15T14:21:35Z` (`public/forecasts/gale.json`), horizon 7 sols. The file also copies the last 30 measured sols into `history`.
 
 | Series | TimesFM MAE | Persistence MAE | Climatology MAE | Published |
 | --- | ---: | ---: | ---: | --- |
@@ -25,9 +25,9 @@ Run written at `2026-11-15T11:51:56Z` (`public/forecasts/gale.json`):
 
 The temperature gain is small (0.03 °C of MAE). It clears the rule. It is not a large skill gain. Pressure climatology is a weak baseline here because the seasonal mean is a poor one-step guess.
 
-Next three sols after sol 4995, quantiles q10 / q50 / q90:
+Next seven sols after sol 4995, quantiles q10 / q50 / q90:
 
-- Air temperature, °C: −40.477 / −38.222 / −36.709, then −40.708 / −38.177 / −36.531, then −40.918 / −38.182 / −36.476
-- Pressure, Pa: 774.124 / 777.283 / 780.913, then 774.202 / 777.807 / 781.691, then 773.325 / 777.379 / 781.648
+- Air temperature, °C: −40.477 / −38.222 / −36.709, −40.708 / −38.177 / −36.531, −40.918 / −38.182 / −36.476, −41.029 / −38.176 / −36.454, −41.080 / −38.160 / −36.310, −41.208 / −38.187 / −36.324, −41.337 / −38.199 / −36.265
+- Pressure, Pa: 774.124 / 777.283 / 780.913, 774.202 / 777.807 / 781.691, 773.325 / 777.379 / 781.648, 771.338 / 776.584 / 781.626, 772.326 / 776.671 / 780.894, 772.154 / 776.243 / 780.480, 770.742 / 775.539 / 780.293
 
 The cold-drop rule is a planning assumption of 15 K. The lowest median (−38.222 °C) is 0.2 K below the last measured midpoint (−38.0 °C), so the amber forecast-cold reason does not fire and the dust-storm flag is not set.

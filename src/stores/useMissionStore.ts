@@ -72,7 +72,7 @@ export interface MissionState {
   drawMode: DrawMode
   draft: LonLat[]
   selectedStopId: string | null
-  panel: 'layers' | 'safety' | 'route' | 'images' | 'eva'
+  panel: 'layers' | 'safety' | 'route' | 'images' | 'eva' | 'climate' | 'climate'
   sheetOpen: boolean
   // --- layers
   layers: LayerState[]

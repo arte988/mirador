@@ -5,6 +5,7 @@ import { daylightRemainingMin, nextLtst } from '../../lib/solar.ts'
 import { useAutoPlan } from '../../lib/useAutoPlan.ts'
 import { useSafetyEngine } from '../../lib/useSafety.ts'
 import { useMissionStore } from '../../stores/useMissionStore.ts'
+import ClimatePanel from '../climate/ClimatePanel.tsx'
 import ImagePanel from '../images/ImagePanel.tsx'
 import LayerPanel from '../layers/LayerPanel.tsx'
 import MarsMap from '../map/MarsMap.tsx'
@@ -13,10 +14,10 @@ import ProfilePanel from '../route/ProfilePanel.tsx'
 import RoutePanel from '../route/RoutePanel.tsx'
 import Sheet from './Sheet.tsx'
 
-type Tab = 'route' | 'safety' | 'layers' | 'images'
+type Tab = 'route' | 'safety' | 'climate' | 'layers' | 'images'
 
-/** Interim Habitat arrangement: left rail (route / layers), map in the center, profile below. Full shells land in prompt 11. */
-export default function PlanLayout() {
+/** Habitat arrangement: left rail, map in the center, profile below. */
+export default function PlanLayout({ initialPanel }: { initialPanel?: 'climate' }) {
   const { t } = useTranslation()
   useAutoPlan()
   useSafetyEngine()
@@ -32,15 +33,18 @@ export default function PlanLayout() {
     const [lon, lat] = SITES.gale.center
     if (daylightRemainingMin(new Date(), lon, lat) <= 0) st.setScenarioTime(nextLtst(new Date(), lon, 10).getTime())
   }, [])
-  const tab: Tab = panel === 'layers' ? 'layers' : panel === 'safety' ? 'safety' : panel === 'images' ? 'images' : 'route'
-  const tabs: Tab[] = ['route', 'safety', 'layers', 'images']
+  useEffect(() => {
+    if (initialPanel) useMissionStore.getState().setPanel(initialPanel)
+  }, [initialPanel])
+  const tab: Tab = panel === 'layers' ? 'layers' : panel === 'safety' ? 'safety' : panel === 'images' ? 'images' : panel === 'climate' ? 'climate' : 'route'
+  const tabs: Tab[] = ['route', 'safety', 'climate', 'layers', 'images']
   return (
     <div className="flex h-full min-h-0">
       <aside aria-label={t('nav.panels')} className="scrollbar-thin flex w-80 shrink-0 flex-col overflow-hidden border-r border-line bg-surface max-md:hidden">
         <div className="shrink-0 border-b border-line p-2">
           <SafetyBadge onClick={() => setPanel('safety')} />
         </div>
-        <div role="tablist" aria-label={t('nav.panels')} className="grid shrink-0 grid-cols-4 gap-1 border-b border-line p-2">
+        <div role="tablist" aria-label={t('nav.panels')} className="flex shrink-0 gap-1 overflow-x-auto border-b border-line p-2">
           {tabs.map((id) => (
             <button
               key={id}
@@ -49,7 +53,7 @@ export default function PlanLayout() {
               id={`tab-${id}`}
               aria-selected={tab === id}
               aria-controls={`panel-${id}`}
-              className={`btn btn-sm ${tab === id ? 'btn-primary' : ''}`}
+              className={`btn btn-sm shrink-0 ${tab === id ? 'btn-primary' : ''}`}
               onClick={() => setPanel(id)}
             >
               {t(`nav.${id}`)}
@@ -57,7 +61,7 @@ export default function PlanLayout() {
           ))}
         </div>
         <div role="tabpanel" id={`panel-${tab}`} aria-labelledby={`tab-${tab}`} className="scrollbar-thin min-h-0 flex-1 overflow-y-auto p-3">
-          {tab === 'route' ? <RoutePanel /> : tab === 'safety' ? <SafetyPanel /> : tab === 'images' ? <ImagePanel /> : <LayerPanel />}
+          {tab === 'route' ? <RoutePanel /> : tab === 'safety' ? <SafetyPanel /> : tab === 'images' ? <ImagePanel /> : tab === 'climate' ? <ClimatePanel /> : <LayerPanel />}
         </div>
       </aside>
       <div className="flex min-w-0 flex-1 flex-col">

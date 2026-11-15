@@ -141,6 +141,11 @@ body {
 .ol-attribution {
   background: transparent !important;
 }
+/* HUD only: the safety chip sits where OpenLayers puts the + button. */
+.hud-map .ol-zoom {
+  top: 4.75rem;
+  left: 0.5em;
+}
 .ol-zoom button,
 .ol-attribution button {
   background: var(--color-surface-2) !important;

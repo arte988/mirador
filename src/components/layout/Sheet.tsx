@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useMissionStore } from '../../stores/useMissionStore.ts'
+import ClimatePanel from '../climate/ClimatePanel.tsx'
 import Checklist from '../eva/Checklist.tsx'
 import ShareCard from '../eva/ShareCard.tsx'
 import WalkControls from '../eva/WalkControls.tsx'
@@ -14,7 +15,7 @@ export default function Sheet() {
   const open = useMissionStore((s) => s.sheetOpen)
   const panel = useMissionStore((s) => s.panel)
   const { setSheetOpen, setPanel } = useMissionStore.getState()
-  const tabs = ['route', 'safety', 'layers', 'images', 'eva'] as const
+  const tabs = ['route', 'safety', 'climate', 'layers', 'images', 'eva'] as const
   if (!open) {
     return (
       <button type="button" className="btn btn-primary pointer-events-auto absolute bottom-3 left-1/2 z-20 -translate-x-1/2 md:hidden" onClick={() => setSheetOpen(true)}>
@@ -27,7 +28,7 @@ export default function Sheet() {
       <div className="flex items-center gap-2 border-b border-line p-2">
         <div role="tablist" className="flex min-w-0 flex-1 gap-1 overflow-x-auto">
           {tabs.map((id) => (
-            <button key={id} type="button" role="tab" aria-selected={panel === id} className={`btn btn-sm ${panel === id ? 'btn-primary' : ''}`} onClick={() => setPanel(id)}>
+            <button key={id} type="button" role="tab" aria-selected={panel === id} className={`btn btn-sm shrink-0 ${panel === id ? 'btn-primary' : ''}`} onClick={() => setPanel(id)}>
               {t(id === 'eva' ? 'eva.short' : `nav.${id}`)}
             </button>
           ))}
@@ -37,6 +38,7 @@ export default function Sheet() {
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto p-3">
         {panel === 'route' && <RoutePanel />}
         {panel === 'safety' && <SafetyPanel />}
+        {panel === 'climate' && <ClimatePanel />}
         {panel === 'layers' && <LayerPanel />}
         {panel === 'images' && <ImagePanel />}
         {panel === 'eva' && (

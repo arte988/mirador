@@ -16,8 +16,10 @@ ROOT = Path(__file__).resolve().parents[2]
 SAMPLE = ROOT / "data" / "climate" / "samples" / "gale_daily.json"
 METRICS = ROOT / "data" / "climate" / "eval" / "metrics.json"
 FORECAST = ROOT / "public" / "forecasts" / "gale.json"
+INDEX = ROOT / "public" / "forecasts" / "index.json"
 HOLDOUT = 14
-HORIZON = 3
+HORIZON = 7
+HISTORY = 30
 CONTEXT = 256
 MODEL_ID = "google/timesfm-2.5-200m-pytorch"
 
@@ -124,6 +126,10 @@ def main() -> None:
     pressure = series_block(rows, "pressure_pa", "Pa", model)
     published = [b for b in (t_air, pressure) if b["status"] == "prediction"]
     last = rows[-1]
+    history = [
+        {"sol": r["sol"], "t_air_c": r["t_air_c"], "pressure_pa": r["pressure_pa"]}
+        for r in rows[-HISTORY:]
+    ]
     doc = {
         "schema": 1,
         "zone_id": "gale",
@@ -141,6 +147,7 @@ def main() -> None:
             "pressure_pa": last["pressure_pa"],
             "note": "t_air is the midpoint of the published min and max for that sol.",
         },
+        "history": history,
         "series": {"t_air": t_air, "pressure": pressure},
         "tau_dust": {
             "status": "unavailable",
@@ -153,6 +160,7 @@ def main() -> None:
     metrics = {"model": MODEL_ID, "holdout_sols": HOLDOUT, "t_air": t_air, "pressure": pressure, "tau_dust": doc["tau_dust"]}
     METRICS.write_text(json.dumps(metrics, indent=2) + "\n")
     FORECAST.write_text(json.dumps(doc, indent=2) + "\n")
+    INDEX.write_text(json.dumps([{"id": "gale", "url": "/forecasts/gale.json"}], indent=2) + "\n")
     print(f"t_air {t_air['status']} mae={t_air['mae_timesfm']} pers={t_air['mae_persistence']}")
     print(f"pressure {pressure['status']} mae={pressure['mae_timesfm']} pers={pressure['mae_persistence']}")
     print(f"wrote {FORECAST}")

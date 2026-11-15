@@ -41,6 +41,14 @@ export interface GaleForecast {
   series: { t_air: ForecastSeries; pressure: ForecastSeries }
   tau_dust: { status: 'unavailable'; reason: string }
   warnings: string[]
+  /** Last measured sols copied by the offline script. The HUD does not read this. */
+  history?: MeasuredSol[]
+}
+
+export interface MeasuredSol {
+  sol: number
+  t_air_c: number
+  pressure_pa: number
 }
 
 export function isGaleForecast(v: unknown): v is GaleForecast {
@@ -71,4 +79,20 @@ export function forecastAgeHours(f: GaleForecast, now = Date.now()): number | nu
 export function forecastIsStale(f: GaleForecast, now = Date.now()): boolean {
   const h = forecastAgeHours(f, now)
   return h !== null && h > FORECAST_STALE_H
+}
+
+export const HORIZONS = [1, 3, 7] as const
+export type Horizon = (typeof HORIZONS)[number]
+export type ClimateVariable = 't_air' | 'pressure'
+
+/** Keep only the precomputed steps. `missing` is how many requested sols the file does not have. */
+export function sliceQuantiles(s: ForecastSeries, horizon: number): { q10: number[]; q50: number[]; q90: number[]; missing: number } {
+  if (s.status !== 'prediction' || horizon < 1) return { q10: [], q50: [], q90: [], missing: Math.max(0, horizon) }
+  const n = Math.min(horizon, s.q10.length, s.q50.length, s.q90.length)
+  return {
+    q10: s.q10.slice(0, n),
+    q50: s.q50.slice(0, n),
+    q90: s.q90.slice(0, n),
+    missing: Math.max(0, horizon - n),
+  }
 }

@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "zone_id": "gale",
-  "generated_at_utc": "2026-11-15T11:51:56Z",
+  "generated_at_utc": "2026-11-15T14:21:35Z",
   "step": "sol",
-  "horizon_steps": 3,
+  "horizon_steps": 7,
   "model": "google/timesfm-2.5-200m-pytorch",
   "license": "Apache-2.0",
   "data_kind": "prediction",
@@ -15,6 +15,158 @@
     "pressure_pa": 777.0,
     "note": "t_air is the midpoint of the published min and max for that sol."
   },
+  "history": [
+    {
+      "sol": 4966,
+      "t_air_c": -37.0,
+      "pressure_pa": 786.0
+    },
+    {
+      "sol": 4967,
+      "t_air_c": -37.5,
+      "pressure_pa": 784.0
+    },
+    {
+      "sol": 4968,
+      "t_air_c": -36.5,
+      "pressure_pa": 791.0
+    },
+    {
+      "sol": 4969,
+      "t_air_c": -37.5,
+      "pressure_pa": 783.0
+    },
+    {
+      "sol": 4970,
+      "t_air_c": -38.5,
+      "pressure_pa": 786.0
+    },
+    {
+      "sol": 4971,
+      "t_air_c": -37.0,
+      "pressure_pa": 782.0
+    },
+    {
+      "sol": 4972,
+      "t_air_c": -37.5,
+      "pressure_pa": 784.0
+    },
+    {
+      "sol": 4973,
+      "t_air_c": -36.0,
+      "pressure_pa": 784.0
+    },
+    {
+      "sol": 4974,
+      "t_air_c": -40.0,
+      "pressure_pa": 783.0
+    },
+    {
+      "sol": 4975,
+      "t_air_c": -38.5,
+      "pressure_pa": 786.0
+    },
+    {
+      "sol": 4976,
+      "t_air_c": -38.5,
+      "pressure_pa": 781.0
+    },
+    {
+      "sol": 4977,
+      "t_air_c": -37.0,
+      "pressure_pa": 786.0
+    },
+    {
+      "sol": 4978,
+      "t_air_c": -39.5,
+      "pressure_pa": 781.0
+    },
+    {
+      "sol": 4979,
+      "t_air_c": -39.0,
+      "pressure_pa": 785.0
+    },
+    {
+      "sol": 4980,
+      "t_air_c": -42.5,
+      "pressure_pa": 781.0
+    },
+    {
+      "sol": 4981,
+      "t_air_c": -38.5,
+      "pressure_pa": 783.0
+    },
+    {
+      "sol": 4982,
+      "t_air_c": -37.5,
+      "pressure_pa": 780.0
+    },
+    {
+      "sol": 4983,
+      "t_air_c": -37.0,
+      "pressure_pa": 782.0
+    },
+    {
+      "sol": 4984,
+      "t_air_c": -38.5,
+      "pressure_pa": 780.0
+    },
+    {
+      "sol": 4985,
+      "t_air_c": -38.0,
+      "pressure_pa": 781.0
+    },
+    {
+      "sol": 4986,
+      "t_air_c": -40.0,
+      "pressure_pa": 782.0
+    },
+    {
+      "sol": 4987,
+      "t_air_c": -39.5,
+      "pressure_pa": 781.0
+    },
+    {
+      "sol": 4988,
+      "t_air_c": -40.0,
+      "pressure_pa": 780.0
+    },
+    {
+      "sol": 4989,
+      "t_air_c": -39.0,
+      "pressure_pa": 778.0
+    },
+    {
+      "sol": 4990,
+      "t_air_c": -40.0,
+      "pressure_pa": 779.0
+    },
+    {
+      "sol": 4991,
+      "t_air_c": -40.0,
+      "pressure_pa": 779.0
+    },
+    {
+      "sol": 4992,
+      "t_air_c": -37.5,
+      "pressure_pa": 780.0
+    },
+    {
+      "sol": 4993,
+      "t_air_c": -38.0,
+      "pressure_pa": 780.0
+    },
+    {
+      "sol": 4994,
+      "t_air_c": -38.5,
+      "pressure_pa": 777.0
+    },
+    {
+      "sol": 4995,
+      "t_air_c": -38.0,
+      "pressure_pa": 777.0
+    }
+  ],
   "series": {
     "t_air": {
       "unit": "C",
@@ -22,17 +174,29 @@
       "q10": [
         -40.477,
         -40.708,
-        -40.918
+        -40.918,
+        -41.029,
+        -41.08,
+        -41.208,
+        -41.337
       ],
       "q50": [
         -38.222,
         -38.177,
-        -38.182
+        -38.182,
+        -38.176,
+        -38.16,
+        -38.187,
+        -38.199
       ],
       "q90": [
         -36.709,
         -36.531,
-        -36.476
+        -36.476,
+        -36.454,
+        -36.31,
+        -36.324,
+        -36.265
       ],
       "mae_persistence": 0.8929,
       "mae_climatology": 1.1959,
@@ -46,17 +210,29 @@
       "q10": [
         774.124,
         774.202,
-        773.325
+        773.325,
+        771.338,
+        772.326,
+        772.154,
+        770.742
       ],
       "q50": [
         777.283,
         777.807,
-        777.379
+        777.379,
+        776.584,
+        776.671,
+        776.243,
+        775.539
       ],
       "q90": [
         780.913,
         781.691,
-        781.648
+        781.648,
+        781.626,
+        780.894,
+        780.48,
+        780.293
       ],
       "mae_persistence": 1.2857,
       "mae_climatology": 15.4668,

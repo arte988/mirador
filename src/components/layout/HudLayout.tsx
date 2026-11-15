@@ -44,7 +44,7 @@ export default function HudLayout() {
     : t('eva.nextRover')
   return (
     <div className="relative h-full min-h-0 bg-black">
-      <div className="h-full">
+      <div className="hud-map h-full">
         <MarsMap />
       </div>
       <div className="pointer-events-none absolute inset-0 flex min-h-0 flex-col gap-2 p-3">

@@ -1,9 +1,10 @@
-import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import SkipLink from './components/a11y/SkipLink.tsx'
 import HandoffListener from './components/layout/HandoffListener.tsx'
 import LanguageSwitch from './components/layout/LanguageSwitch.tsx'
 import HudLayout from './components/layout/HudLayout.tsx'
+import NotFound from './components/layout/NotFound.tsx'
 import PlanLayout from './components/layout/PlanLayout.tsx'
 import WalkLayout from './components/layout/WalkLayout.tsx'
 import { useMissionStore } from './stores/useMissionStore.ts'
@@ -68,9 +69,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/plan" element={<PlanLayout />} />
+          <Route path="/climate" element={<PlanLayout initialPanel="climate" />} />
           <Route path="/walk" element={<WalkLayout />} />
           <Route path="/hud" element={<HudLayout />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </div>
