@@ -29,6 +29,8 @@ export const es: Messages = {
     images: 'Imágenes',
     credits: 'Créditos',
     primary: 'Navegación principal',
+    back: 'Volver',
+    backToWalk: 'Volver a la pantalla de caminata',
   },
   mode: {
     label: 'Modo de pantalla',
@@ -46,6 +48,8 @@ export const es: Messages = {
     title: 'Planea una Marswalk segura',
     body: 'MIRADOR apila datos de la NASA (óptico, térmico, topográfico, geológico, clima y clima espacial) en un solo mapa de Marte y dibuja una ruta caminable hacia paradas científicas en el boxwork. No finge que un mapa global puede ver un solo paso.',
     start: 'Planear ruta',
+    aiTitle: 'El simulador de clima usa IA',
+    aiBody: 'TimesFM 2.5 pronostica los próximos soles de temperatura y presión en Gale a partir de la serie publicada de Curiosity. Un número se muestra solo si el modelo supera el valor de ayer. La opacidad del polvo no se inventa. Es un pronóstico estadístico, no física atmosférica.',
     honesty:
       'Los límites siguen a la vista: el mapa geológico es solo regional, las teselas MOLA DEM son imágenes y no metros, el O2 y la batería son simulados.',
   },
@@ -359,7 +363,9 @@ export const es: Messages = {
     },
   },
   climate: {
-    title: 'Pronóstico de Gale',
+    title: 'Simulador de clima',
+    aiBadge: 'IA · TimesFM 2.5',
+    aiLead: 'Este simulador usa TimesFM 2.5 sobre la serie medida de Gale. Es un modelo estadístico, no física atmosférica.',
     pred: 'PRED',
     measured: 'Medido',
     prediction: 'Predicción',
@@ -381,8 +387,8 @@ export const es: Messages = {
     cached: 'en caché',
     stops: 'Se muestra para {{names}} como la misma serie de Gale.',
     about: 'TimesFM 2.5, Apache-2.0, solo si supera el valor de ayer. Si no, no hay cuantiles.',
-    hud: '{{kind}} · {{t}} °C ({{lo}}…{{hi}})',
-    hudNone: 'Sin predicción de temperatura del aire',
+    hud: 'IA · {{kind}} · {{t}} °C ({{lo}}…{{hi}})',
+    hudNone: 'IA · sin predicción de temperatura del aire',
   },
   map: {
     aria: 'Mapa interactivo de Marte en el cráter Gale. Arrastra para mover, usa la rueda o los botones más y menos para acercar.',

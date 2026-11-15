@@ -104,6 +104,12 @@ body {
   border-color: var(--color-go);
   color: var(--color-go);
 }
+/* .btn sets display, so it wins over the md:hidden utility. */
+@media (min-width: 48rem) {
+  .btn.hud-back {
+    display: none;
+  }
+}
 
 .card {
   background: var(--color-surface);

@@ -38,6 +38,10 @@ function Home() {
       <h1 className="text-3xl font-bold">{t('home.title')}</h1>
       <p className="text-fg/90">{t('app.tagline')}</p>
       <p className="text-muted">{t('home.body')}</p>
+      <div className="card p-3">
+        <h2 className="text-sm font-bold uppercase tracking-wider text-muted">{t('home.aiTitle')}</h2>
+        <p className="mt-1 text-sm text-fg">{t('home.aiBody')}</p>
+      </div>
       <div>
         <NavLink to="/plan" className="btn btn-primary">{t('home.start')}</NavLink>
       </div>

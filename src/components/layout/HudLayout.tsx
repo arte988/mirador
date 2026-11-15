@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { HABITAT } from '../../data/sites.ts'
 import { abortNow } from '../../lib/abortNow.ts'
@@ -23,7 +24,7 @@ export default function HudLayout() {
   const safety = useMissionStore((s) => s.safety)
   const status = useMissionStore((s) => s.walkStatus)
   const planStatus = useMissionStore((s) => s.planStatus)
-  const { setWalk } = useMissionStore.getState()
+  const { setWalk, setDisplayMode } = useMissionStore.getState()
   const [forecast, setForecast] = useState<GaleForecast | null>(null)
   useEffect(() => {
     void preloadForecast().then((r) => setForecast(r.data))
@@ -46,14 +47,24 @@ export default function HudLayout() {
       <div className="h-full">
         <MarsMap />
       </div>
-      <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-3">
-        <div className="flex items-start justify-between gap-2">
+      <div className="pointer-events-none absolute inset-0 flex min-h-0 flex-col gap-2 p-3">
+        <div className="pointer-events-auto flex shrink-0 items-start justify-between gap-2 pl-12">
           <p className={`rounded-lg border px-3 py-1 text-lg font-extrabold uppercase tracking-wider ${st.border} ${st.bg} ${st.text}`} role="status">
             <span aria-hidden="true">{st.glyph} </span>{t(`safety.levels.${level}`)}
           </p>
-          <p className="rounded-lg border border-line bg-surface/80 px-3 py-1 font-mono text-sm text-fg">{sim ? fmtKm(sim.distanceM) : '—'}</p>
+          <div className="flex flex-col items-end gap-2">
+            <Link
+              to="/walk"
+              className="btn hud-back"
+              aria-label={t('nav.backToWalk')}
+              onClick={() => setDisplayMode('tablet')}
+            >
+              {t('nav.back')}
+            </Link>
+            <p className="rounded-lg border border-line bg-surface/80 px-3 py-1 font-mono text-sm text-fg">{sim ? fmtKm(sim.distanceM) : '—'}</p>
+          </div>
         </div>
-        <div className="pointer-events-auto mx-auto flex max-w-md flex-col gap-2 rounded-2xl border border-line bg-surface/90 p-3 text-center">
+        <div className="pointer-events-auto mx-auto mt-auto flex max-h-full min-h-0 w-full max-w-md flex-col gap-2 overflow-y-auto rounded-2xl border border-line bg-surface/90 p-3 text-center">
           <p className="hud-text text-2xl font-bold">{next}</p>
           <p className="text-sm text-fg">
             {pred && air

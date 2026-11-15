@@ -37,10 +37,12 @@ export default function ForecastCard() {
 
   return (
     <div className="card p-3" data-card="forecast">
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <h3 className="label">{t('climate.title')}</h3>
+        <span className="chip text-fg">{t('climate.aiBadge')}</span>
         <span className="chip ml-auto">{file?.data_kind === 'prediction' ? t('climate.pred') : t('climate.unavailableShort')}</span>
       </div>
+      <p className="mt-1 text-xs text-fg">{t('climate.aiLead')}</p>
       <p className="mt-1 text-xs text-muted">{t('climate.shared')}</p>
       {missing && <p className="mt-2 text-sm text-caution">{t('climate.unavailable')}</p>}
       {file && (

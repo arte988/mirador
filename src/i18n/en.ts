@@ -27,6 +27,8 @@ export const en = {
     images: 'Images',
     credits: 'Credits',
     primary: 'Primary navigation',
+    back: 'Back',
+    backToWalk: 'Back to the walk screen',
   },
   mode: {
     label: 'Display mode',
@@ -44,6 +46,8 @@ export const en = {
     title: 'Plan a safe Marswalk',
     body: 'MIRADOR stacks NASA optical, thermal, topographic, geologic, weather and space-weather data on one Mars map and draws a walkable route to boxwork science stops. It never pretends a global map can see a single footstep.',
     start: 'Plan route',
+    aiTitle: 'The climate simulator uses AI',
+    aiBody: 'TimesFM 2.5 forecasts the next sols of air temperature and pressure at Gale from the published Curiosity series. A number is shown only when the model beats yesterday’s value. Dust opacity is not invented. This is a statistical forecast, not atmospheric physics.',
     honesty:
       'Limits stay visible: the geologic map is regional only, the MOLA DEM tiles are pictures not meters, O2 and battery are simulated.',
   },
@@ -357,7 +361,9 @@ export const en = {
     },
   },
   climate: {
-    title: 'Gale forecast',
+    title: 'Climate simulator',
+    aiBadge: 'AI · TimesFM 2.5',
+    aiLead: 'This simulator uses TimesFM 2.5 on the measured Gale series. It is a statistical model, not atmospheric physics.',
     pred: 'PRED',
     measured: 'Measured',
     prediction: 'Prediction',
@@ -379,8 +385,8 @@ export const en = {
     cached: 'cached',
     stops: 'Shown for {{names}} as the same Gale series.',
     about: 'TimesFM 2.5, Apache-2.0, only when it beats yesterday’s value. Quantiles withheld otherwise.',
-    hud: '{{kind}} · {{t}} °C ({{lo}}…{{hi}})',
-    hudNone: 'No air-temperature prediction',
+    hud: 'AI · {{kind}} · {{t}} °C ({{lo}}…{{hi}})',
+    hudNone: 'AI · no air-temperature prediction',
   },
   map: {
     aria: 'Interactive Mars map of Gale crater. Drag to pan, scroll or use the plus and minus buttons to zoom.',
