@@ -88,6 +88,23 @@ export const LAYER_DEFS: LayerDef[] = [
   },
 
   {
+    id: 'themisNight',
+    kind: 'thermal',
+    source: 'trek',
+    defaultVisible: false,
+    defaultOpacity: 0.7,
+    // https://trek.nasa.gov/tiles/Mars/EQ/THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018/1.0.0/WMTSCapabilities.xml
+    trek: {
+      id: 'THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018',
+      title: 'THEMIS IR Night 100 m',
+      template: `${T}/THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018/1.0.0//default/default028mm/{z}/{y}/{x}.png`,
+      format: 'image/png',
+      bbox: { west: -179.9999997, south: -65.0006576, east: 179.9998849, north: 65.0007535 },
+      maxZoom: 9,
+    },
+  },
+
+  {
     id: 'geology',
     kind: 'geologic',
     source: 'arcgis',
