@@ -111,7 +111,10 @@ one from [Google AI Studio](https://aistudio.google.com/apikey). Vite loads it s
 The API key is never sent to the browser. See Google's [ephemeral token documentation](https://ai.google.dev/gemini-api/docs/ephemeral-tokens).
 The endpoint accepts same-origin or origin-less GET/POST requests and limits each IP to 12 requests per hour on a
 best-effort, per-instance basis; serverless instances do not share counters. CAPCOM is an AI assistant, not NASA
-flight rules or certification. This step provides token minting only; voice and browser tools are not yet implemented.
+flight rules or certification. Browser tools now expose simulation, safety, feeds, forecast, light, communications
+and terrain calculations with source and age metadata. Missing inputs stay unavailable; cached, snapshot and
+simulated feeds are labeled. An abort proposal is stored for explicit user confirmation and does not start the walk;
+its budget comparison covers time only. The voice interface and confirmation UI remain to be implemented.
 
 The **scenario injector** (dust storm, SEP alert, O2 leak) exists because live data is usually calm. Everything it
 does is labeled as a simulation in the panel and in the safety badge.
