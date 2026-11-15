@@ -103,35 +103,77 @@ model-run feed, not a radiation measurement at Gale. The Mars-impact rule includ
 AEOLIS's amber window (6 hours before now through 72 hours ahead) is a prototype planning assumption, not a
 DONKI threshold or a measurement of surface radiation.
 
-### AI copilot (Gemini Live)
+### Aeolis CAPCOM (AI copilot)
 
-The token endpoint prepares a constrained Gemini Live session; the session client connects directly to
-Gemini using a short-lived, single-use token. Set `GEMINI_API_KEY` on the server and in the Vercel project; obtain
-one from [Google AI Studio](https://aistudio.google.com/apikey). Vite loads it server-side for local development.
-The API key is never sent to the browser. See Google's [ephemeral token documentation](https://ai.google.dev/gemini-api/docs/ephemeral-tokens).
-The endpoint accepts same-origin or origin-less GET/POST requests and limits each IP to 12 requests per hour on a
-best-effort, per-instance basis; serverless instances do not share counters. CAPCOM is an AI assistant, not NASA
-flight rules or certification. Browser tools now expose simulation, safety, feeds, forecast, light, communications
-and terrain calculations with source and age metadata. Missing inputs stay unavailable; cached, snapshot and
-simulated feeds are labeled. An abort proposal is stored for explicit user confirmation and does not start the walk;
-its budget comparison covers time only. Open CAPCOM on Walk or HUD, start a session, then hold the talk button
-(or hold Space while it has focus); release to send. Text input is available if the microphone is unavailable,
-and the speaker can be muted. Answers show their tool evidence and ages; expand the tool-call log for details.
-Abort proposals appear as a white dashed line on the map and require an explicit Confirm; Dismiss removes them.
-A proposal is rejected if the simulation clock has advanced. The session client also has a replaceable output gate.
-Choose **Onboard autonomous** for immediate output or **Mission Control (Earth)** to delay each answer by the
-estimated Earth–Mars round trip at the simulation date, divided by 60 for the demo. The countdown also shows the
-uncompressed round trip, calculated from [JPL SSD's approximate Keplerian elements](https://ssd.jpl.nasa.gov/planets/approx_pos.html).
-While a signal is pending, new requests and mode changes wait; stopping the session discards queued output. This is
-an interface simulation, not a claim that the model runs on Earth or Mars. If the AI session is unavailable, the
-**Can I continue?** card runs local route, safety and light-time tools without an LLM, retaining missing-data and
-source/age labels. It is also available on demand and remains a planning aid, not a flight rule.
-Session resumption is attempted once with a fresh token and a resumable handle; because the token locks the setup,
-whether Gemini accepts that handle requires a live check and resumption is not guaranteed.
+Aeolis CAPCOM is a voice and text copilot for the simulated EVA, powered by Google Gemini Live
+(`gemini-3.8-live`). It can consult AEOLIS planning, simulation, safety and feed tools, and show the tool
+sources and ages alongside its answers. **It is an AI assistant, not NASA flight rules or a certification.**
+See the [2–3 minute CAPCOM demo](docs/capcom-demo.md) for a guided rehearsal.
 
-For an optional manual smoke test, set the server key in the process environment and run
-`node scripts/copilot-live-check.mts`. This contacts Gemini and may incur usage; it prints statuses, tool names and
-transcripts with credential redaction. It uses a stub tool and does not test the real EVA data tools.
+#### Try it locally
+
+1. Obtain a Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey). Copy the supplied
+   `.env.example` to a local `.env`, then set `GEMINI_API_KEY` there. Keep the key private and never commit it.
+   The template also documents the optional server-side NASA key; `DEMO_KEY` is rate limited.
+2. Run `npm install`, then `npm run dev`. Open `http://localhost:5173/walk` or `/hud`.
+3. Open the **CAPCOM** panel and select **Start session**. Permit the microphone for voice, or use the text field
+   if microphone access is unavailable. Hold **Hold to talk** (or Space while the button is focused) and release
+   to send. The speaker can be muted; transcripts remain visible.
+4. Choose **Onboard autonomous** for immediate delivery or **Mission Control (Earth)** for the demonstration
+   delay. Ask “Can I continue?” and inspect the evidence chips and expandable tool-call log. A pending abort
+   proposal is a white dashed map route: **Confirm** starts the abort; **Dismiss** clears it.
+
+#### Vercel configuration
+
+Set `GEMINI_API_KEY` in the Vercel project's environment variable settings for the intended deployment
+environments, then redeploy. The key stays server-side; the browser receives only a short-lived, single-use
+ephemeral token. Vite loads the local setting server-side during development. See Google's
+[ephemeral token documentation](https://ai.google.dev/gemini-api/docs/ephemeral-tokens).
+
+#### Architecture and limits
+
+- `api/live-token.ts` mints the token with a constrained Gemini Live setup. The browser connects directly to
+  Gemini and runs local tools for route status, safety, weather, forecast, communications, light, line of sight
+  and abort proposals. Tool responses include `{value, source, ageS}` and an availability flag; missing data is
+  reported as unavailable instead of filled in.
+- The system prompt instructs the model to use tool results for numbers and hazards, cite source and age, say
+  when it lacks data, avoid medical advice, and propose aborts only for user confirmation. Model output can still
+  be wrong: inspect the evidence and planning assumptions. Simulated, snapshot and stale inputs are labeled. The
+  abort budget comparison covers time only, not oxygen or battery; a proposal is rejected if the simulation clock
+  has advanced.
+- Mission Control's output gate delays audio, transcripts and evidence by the estimated Earth–Mars round trip at
+  the simulation date, compressed **×60** solely for the demo. The uncompressed time uses
+  [JPL SSD approximate Keplerian elements](https://ssd.jpl.nasa.gov/planets/approx_pos.html). It is an interface
+  simulation, not a claim that the model runs on Earth or Mars. New requests wait while a signal is pending;
+  stopping the session discards queued output. Onboard mode delivers immediately.
+- If the AI session is unavailable, **Can I continue?** runs a deterministic local route, safety and light-time
+  check without an LLM; it is also available on demand. It preserves source/age and no-data labels and is a
+  planning aid, not a flight rule.
+- Gemini Live is a preview API. Session resumption is attempted once with a fresh token and a resumable handle,
+  but has not been live-verified; the constrained setup may ignore the handle. Transient connection failures can
+  occur. The endpoint's 12 requests per hour per IP limit is best effort per serverless instance, not a shared
+  global limit.
+
+#### Cost and privacy
+
+As checked **15 November 2026**, Google's [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing#gemini-3.8-live)
+listed paid-tier audio input at **$0.005 per minute** and audio output at **$0.018 per minute** for Gemini 3.8
+Live; text and other usage have separate rates. A free tier is listed subject to Google's terms and limits.
+Prices and availability can change, so check the linked page and your project's billing before a demo.
+
+During an active voice session, audio is sent from the browser to Google's Gemini API. The AEOLIS server mints
+tokens but does not store session audio or transcripts; the panel's transcript and tool log are held in browser
+memory. Google handles submitted data under its own [terms](https://ai.google.dev/gemini-api/terms), which differ
+by service tier. Avoid sharing sensitive information in the session.
+
+#### Manual live check
+
+With `GEMINI_API_KEY` already set in the process environment, run `node scripts/copilot-live-check.mts`. It contacts
+Gemini and may incur usage. It prints statuses, tool names and transcripts with credential redaction; its stub tool
+returns no data, so it does not test the real EVA tools. On 15 November 2026, the supervisor observed a successful
+connection, `get_safety` call, spoken “I don't have that data,” and clean close with that stub. A separate fixture
+round trip cited the fixture's source and age. One run closed before setup completed and a retry succeeded; session
+resumption across reconnects remains unverified.
 
 The **scenario injector** (dust storm, SEP alert, O2 leak) exists because live data is usually calm. Everything it
 does is labeled as a simulation in the panel and in the safety badge.
@@ -277,3 +319,8 @@ NASA / JPL-Caltech, USGS Astrogeology, Arizona State University THEMIS, Universi
 Science Systems, Centro de Astrobiología (REMS). Mars Trek tiles remain NASA tiles; this app only caches copies in
 the browser. AEOLIS is a NASA Space Apps prototype, not an official NASA product, and not medical or flight
 certification.
+
+CAPCOM uses the [Google Gemini Live API](https://ai.google.dev/gemini-api/docs/live) (`gemini-3.8-live`) and
+[JPL SSD approximate Keplerian elements](https://ssd.jpl.nasa.gov/planets/approx_pos.html) for Earth–Mars light time.
+Its browser audio uses the Web Audio API, and its local tool state uses Zustand. Forecast data, when published,
+uses Google's TimesFM 2.5 and the unofficial MSL REMS series described above.
