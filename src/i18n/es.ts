@@ -94,8 +94,13 @@ export const es: Messages = {
         credit: 'NASA/JPL-Caltech/Universidad de Arizona (MRO HiRISE) vía Mars Trek',
       },
       themis: {
-        name: 'Infrarrojo térmico (THEMIS)',
-        help: 'Mosaico infrarrojo térmico diurno, 100 m por píxel. El contraste con la capa óptica ayuda a distinguir roca de polvo. La capa nocturna está por verificar.',
+        name: 'Infrarrojo térmico diurno (THEMIS)',
+        help: 'Mosaico infrarrojo térmico diurno, 100 m por píxel. El contraste con la capa óptica ayuda a distinguir roca de polvo.',
+        credit: 'NASA/JPL-Caltech/ASU (Mars Odyssey THEMIS) vía Mars Trek',
+      },
+      themisNight: {
+        name: 'Infrarrojo térmico nocturno (THEMIS)',
+        help: 'Mosaico infrarrojo térmico nocturno, 100 m por píxel. Las diferencias de brillo pueden revelar diferencias de inercia térmica.',
         credit: 'NASA/JPL-Caltech/ASU (Mars Odyssey THEMIS) vía Mars Trek',
       },
       geology: {

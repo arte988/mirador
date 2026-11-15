@@ -65,7 +65,7 @@ async function trekLayer(def: LayerDef): Promise<TileLayer<XYZ>> {
     tileGrid: tileGridFor(cfg),
     tileUrlFunction: ([z, x, y]) => tileUrl(cfg, z, x, y),
     crossOrigin: 'anonymous',
-    attributions: ['NASA/JPL-Caltech · Mars Trek'],
+    attributions: [def.kind === 'thermal' ? 'NASA/JPL-Caltech/ASU · Mars Trek' : 'NASA/JPL-Caltech · Mars Trek'],
     wrapX: false,
   })
   return new TileLayer({ source, extent: [cfg.bbox.west, cfg.bbox.south, cfg.bbox.east, cfg.bbox.north] })

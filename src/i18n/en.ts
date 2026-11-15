@@ -92,8 +92,13 @@ export const en = {
         credit: 'NASA/JPL-Caltech/University of Arizona (MRO HiRISE) via Mars Trek',
       },
       themis: {
-        name: 'Thermal IR (THEMIS)',
-        help: 'Daytime thermal infrared mosaic, 100 m per pixel. Contrast with optical helps tell rock from dust. A night layer is to verify.',
+        name: 'Daytime thermal IR (THEMIS)',
+        help: 'Daytime thermal infrared mosaic, 100 m per pixel. Contrast with optical helps tell rock from dust.',
+        credit: 'NASA/JPL-Caltech/ASU (Mars Odyssey THEMIS) via Mars Trek',
+      },
+      themisNight: {
+        name: 'Nighttime thermal IR (THEMIS)',
+        help: 'Nighttime thermal infrared mosaic, 100 m per pixel. Differences in brightness can reveal differences in thermal inertia.',
         credit: 'NASA/JPL-Caltech/ASU (Mars Odyssey THEMIS) via Mars Trek',
       },
       geology: {

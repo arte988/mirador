@@ -26,7 +26,7 @@ npm run build
 
 | Source | What MIRADOR uses it as | Credit | Honesty |
 | --- | --- | --- | --- |
-| JPL Mars Trek WMTS | Optical (Curiosity CTX, HiRISE), thermal (THEMIS day), MOLA color hillshade | NASA/JPL-Caltech, MSSS, UA, ASU | MOLA 8-bit PNG is a picture, never meters. Missing tiles mean no coverage. |
+| JPL Mars Trek WMTS | Optical (Curiosity CTX, HiRISE), thermal (THEMIS day and night), MOLA color hillshade | NASA/JPL-Caltech, MSSS, UA, ASU | MOLA 8-bit PNG is a picture, never meters. Missing tiles mean no coverage. |
 | USGS MSL Gale DEM mosaic, 4 m crop | Numeric elevation, slope, hillshade, line of sight, routing | USGS Astrogeology, NASA/JPL/UA | Only this local DTM is read as meters (`public/dtm/`). |
 | USGS SIM 3292 geologic map (tiles) | Regional units around Gale (AHi, Htu at this scale) | Tanaka et al. 2014, USGS | Scale 1:20,000,000. Regional context only. |
 | Unofficial MSL REMS web feed | Weather at Gale (sol, T, P, UV, opacity) | NASA / Centro de Astrobiología | Outreach feed. Age of the last sol is shown. |
@@ -38,6 +38,11 @@ npm run build
 | Open-Meteo (MDRS, Utah) | Earth analog weather, **only** in Analog mode | Open-Meteo | Labeled Earth analog, never presented as Mars. |
 
 NASA Worldview is an Earth tool: UX inspiration for the layer manager only. No Earth tiles are shown as Mars.
+
+The optional THEMIS night layer is the 100 m Mars Odyssey mosaic `THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018`,
+off by default. Its [Mars Trek GetCapabilities](https://trek.nasa.gov/tiles/Mars/EQ/THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018/1.0.0/WMTSCapabilities.xml)
+advertises PNG tiles in `default028mm`, zoom levels 0–9, and a longitude/latitude bbox of
+(-179.9999997, -65.0006576) to (179.9998849, 65.0007535). Coverage may have gaps within that bbox.
 
 ## Local DTM
 
