@@ -1,7 +1,7 @@
 /** English is the source of truth for every visible string. Spanish lives in es.ts. */
 export const en = {
   app: {
-    name: 'MIRADOR',
+    name: 'AEOLIS',
     tagline: 'A hyperlocal layered Mars map to plan and walk a safe science EVA on Mount Sharp.',
     site: 'Gale crater · lower Mount Sharp (boxwork unit)',
     skip: 'Skip to main content',
@@ -26,6 +26,13 @@ export const en = {
     route: 'Route',
     images: 'Images',
     climate: 'Climate · AI',
+    tab: {
+      route: 'Route',
+      safety: 'Safety',
+      climate: 'Climate',
+      layers: 'Layers',
+      images: 'Images',
+    },
     credits: 'Credits',
     primary: 'Primary navigation',
     back: 'Back',
@@ -45,7 +52,7 @@ export const en = {
   },
   home: {
     title: 'Plan a safe Marswalk',
-    body: 'MIRADOR stacks NASA optical, thermal, topographic, geologic, weather and space-weather data on one Mars map and draws a walkable route to boxwork science stops. It never pretends a global map can see a single footstep.',
+    body: 'AEOLIS stacks NASA optical, thermal, topographic, geologic, weather and space-weather data on one Mars map and draws a walkable route to boxwork science stops. It never pretends a global map can see a single footstep.',
     start: 'Plan route',
     aiTitle: 'The climate simulator uses AI',
     aiBody: 'TimesFM 2.5 forecasts the next sols of air temperature and pressure at Gale from the published Curiosity series. A number is shown only when the model beats yesterday’s value. Dust opacity is not invented. This is a statistical forecast, not atmospheric physics.',
@@ -120,7 +127,7 @@ export const en = {
       envelope: {
         name: 'Walk-back envelope',
         help: 'Best-case round trip time from the habitat: thin cyan contours every hour, amber outline where the trip no longer fits the usable suit time. Appears after planning.',
-        credit: 'Derived by MIRADOR (simulated consumables)',
+        credit: 'Derived by AEOLIS (simulated consumables)',
       },
       comms: {
         name: 'Comms line of sight',
@@ -395,6 +402,13 @@ export const en = {
     hudNone: 'AI · no air-temperature prediction',
     zone: 'Zone',
     zoneGale: 'Gale (Curiosity REMS)',
+    zoneRidgeA: 'Ridge A',
+    zoneRidgeB: 'Ridge B',
+    zoneRidgeC: 'Ridge C',
+    estimatedFrom: '{{name}} · estimated from Gale',
+    estimatedNote: 'Estimated from Gale. Same precomputed series, not a sensor on this ridge.',
+    expand: 'Expand chart',
+    expandTitle: 'Climate chart',
     variable: 'Variable',
     horizon: 'Horizon',
     horizonSols: '{{n}} sols',
@@ -415,17 +429,20 @@ export const en = {
       red: 'Red',
     },
     riskNote: 'Color follows the temperature change. Planning assumption, not a flight rule. This does not start the dust-storm scenario.',
-    riskPressure: 'The green / amber / red scale is for air temperature only.',
+    riskPressure: 'Neutral',
+    pressureNeutral: 'Neutral',
+    vsPreviousSol: '{{n}} {{unit}} versus the previous sol',
     whatIfTitle: 'What-if: more CO₂',
     whatIfWarning: 'Educational simulation, not an atmospheric physics model.',
     whatIfSlider: 'Extra CO₂ {{n}} %',
-    whatIfRule: 'At +50% the published median shifts by +2 K and +10 Pa. The shift is proportional. It is not a climate sensitivity.',
+    whatIfRule: 'From +1% the published median shifts in proportion, up to +2 K and +10 Pa at +50%. It is not a climate sensitivity.',
+    whatIfValue: 'Shifted median {{n}} {{unit}}',
     precomputed: 'TimesFM 2.5 · precomputed',
     generated: 'Generated {{when}} UTC',
   },
   notFound: {
     title: 'Page not found',
-    body: 'That address is not part of MIRADOR.',
+    body: 'That address is not part of AEOLIS.',
     back: 'Back to the plan',
   },
   map: {
@@ -522,7 +539,7 @@ export const en = {
   },
   credits: {
     title: 'Credits',
-    body: 'NASA / JPL-Caltech, USGS Astrogeology, ASU THEMIS, University of Arizona HiRISE, MSSS, Centro de Astrobiología (REMS). MIRADOR is a NASA Space Apps prototype, not an official NASA product.',
+    body: 'NASA / JPL-Caltech, USGS Astrogeology, ASU THEMIS, University of Arizona HiRISE, MSSS, Centro de Astrobiología (REMS). AEOLIS is a NASA Space Apps prototype, not an official NASA product.',
   },
 }
 

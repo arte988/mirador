@@ -1,10 +1,11 @@
-import { FORECAST_URL, isGaleForecast, type GaleForecast } from './climateForecast.ts'
+import { FORECAST_URL, isGaleForecast, isZoneForecast, type GaleForecast } from './climateForecast.ts'
 
 const CACHE = 'mirador.forecast'
 
 export interface ForecastZone {
   id: string
   url: string
+  estimatedFrom?: string
 }
 
 const GALE_ZONE: ForecastZone = { id: 'gale', url: FORECAST_URL }
@@ -20,8 +21,9 @@ export async function loadForecastZones(): Promise<ForecastZone[]> {
       if (!item || typeof item !== 'object') return []
       const id = (item as { id?: unknown }).id
       const url = (item as { url?: unknown }).url
+      const estimated = (item as { estimated_from?: unknown }).estimated_from
       if (typeof id !== 'string' || typeof url !== 'string' || !url.startsWith('/forecasts/')) return []
-      return [{ id, url }]
+      return [{ id, url, estimatedFrom: typeof estimated === 'string' ? estimated : undefined }]
     })
     return zones.length > 0 ? zones : [GALE_ZONE]
   } catch {
@@ -66,4 +68,34 @@ export async function loadForecast(url = FORECAST_URL): Promise<{ data: GaleFore
 
 export function preloadForecast(): ReturnType<typeof loadForecast> {
   return loadForecast()
+}
+
+/** Same cache as the HUD, but accepts a ridge file derived from Gale. */
+export async function loadZoneForecast(url: string): Promise<{ data: GaleForecast | null; cached: boolean }> {
+  try {
+    const res = await fetch(url)
+    if (res.ok) {
+      const body: unknown = await res.clone().json()
+      if (isZoneForecast(body)) {
+        try {
+          const cache = await caches.open(CACHE)
+          await cache.put(url, res)
+        } catch {
+          /* private mode */
+        }
+        return { data: body, cached: false }
+      }
+    }
+  } catch {
+    /* offline */
+  }
+  try {
+    const cache = await caches.open(CACHE)
+    const hit = await cache.match(url)
+    if (!hit) return { data: null, cached: false }
+    const body: unknown = await hit.json()
+    return isZoneForecast(body) ? { data: body, cached: true } : { data: null, cached: false }
+  } catch {
+    return { data: null, cached: false }
+  }
 }

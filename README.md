@@ -1,4 +1,4 @@
-# MIRADOR
+# AEOLIS
 
 A dark, English-first visor and habitat console that stacks NASA data on a hyperlocal Mars map to plan a safe
 science EVA on lower Mount Sharp (Gale crater, boxwork unit). NASA Space Apps prototype.
@@ -24,7 +24,7 @@ npm run build
 
 ## Data sources
 
-| Source | What MIRADOR uses it as | Credit | Honesty |
+| Source | What AEOLIS uses it as | Credit | Honesty |
 | --- | --- | --- | --- |
 | JPL Mars Trek WMTS | Optical (Curiosity CTX, HiRISE), thermal (THEMIS day and night), MOLA color hillshade | NASA/JPL-Caltech, MSSS, UA, ASU | MOLA 8-bit PNG is a picture, never meters. Missing tiles mean no coverage. |
 | USGS MSL Gale DEM mosaic, 4 m crop | Numeric elevation, slope, hillshade, line of sight, routing | USGS Astrogeology, NASA/JPL/UA | Only this local DTM is read as meters (`public/dtm/`). |
@@ -100,7 +100,7 @@ model-run feed, not a radiation measurement at Gale. The Mars-impact rule includ
 `location` equal to `Mars` and an arrival time, including entries flagged as glancing or minor. The
 [DONKI API schema](https://ccmc.gsfc.nasa.gov/DONKI/api/openapi/) describes these fields; the
 [DONKI overview](https://ccmc.gsfc.nasa.gov/tools/DONKI/) identifies WSA-ENLIL results as model outputs.
-MIRADOR's amber window (6 hours before now through 72 hours ahead) is a prototype planning assumption, not a
+AEOLIS's amber window (6 hours before now through 72 hours ahead) is a prototype planning assumption, not a
 DONKI threshold or a measurement of surface radiation.
 
 ### AI copilot (Gemini Live)
@@ -255,5 +255,5 @@ English, dark theme. Rehearsal mode keeps the light green without pretending liv
 
 NASA / JPL-Caltech, USGS Astrogeology, Arizona State University THEMIS, University of Arizona HiRISE, Malin Space
 Science Systems, Centro de Astrobiología (REMS). Mars Trek tiles remain NASA tiles; this app only caches copies in
-the browser. MIRADOR is a NASA Space Apps prototype, not an official NASA product, and not medical or flight
+the browser. AEOLIS is a NASA Space Apps prototype, not an official NASA product, and not medical or flight
 certification.

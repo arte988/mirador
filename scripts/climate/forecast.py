@@ -115,6 +115,26 @@ def series_block(rows: list[dict], key: str, unit: str, model) -> dict:
     return block
 
 
+def write_estimated_ridges(doc: dict) -> None:
+    """Ridge A–C reuse the Gale quantiles. They are not a sensor on the ridge."""
+    note = "Estimated from Gale (Curiosity REMS). Not an independent measurement."
+    index = [{"id": "gale", "url": "/forecasts/gale.json"}]
+    for zone_id in ("ridge-a", "ridge-b", "ridge-c"):
+        copy = json.loads(json.dumps(doc))
+        copy["zone_id"] = zone_id
+        copy["estimated_from"] = "gale"
+        copy["shared_point"] = (
+            "Estimated from the Curiosity REMS series at Gale. "
+            "Not a sensor on this ridge. Same precomputed quantiles as gale.json."
+        )
+        warnings = [note, *[w for w in copy.get("warnings") or [] if w != note]]
+        copy["warnings"] = warnings
+        path = FORECAST.parent / f"{zone_id}.json"
+        path.write_text(json.dumps(copy, indent=2) + "\n")
+        index.append({"id": zone_id, "url": f"/forecasts/{zone_id}.json", "estimated_from": "gale"})
+    INDEX.write_text(json.dumps(index, indent=2) + "\n")
+
+
 def main() -> None:
     sample = json.loads(SAMPLE.read_text())
     rows = sample["rows"]
@@ -160,7 +180,7 @@ def main() -> None:
     metrics = {"model": MODEL_ID, "holdout_sols": HOLDOUT, "t_air": t_air, "pressure": pressure, "tau_dust": doc["tau_dust"]}
     METRICS.write_text(json.dumps(metrics, indent=2) + "\n")
     FORECAST.write_text(json.dumps(doc, indent=2) + "\n")
-    INDEX.write_text(json.dumps([{"id": "gale", "url": "/forecasts/gale.json"}], indent=2) + "\n")
+    write_estimated_ridges(doc)
     print(f"t_air {t_air['status']} mae={t_air['mae_timesfm']} pers={t_air['mae_persistence']}")
     print(f"pressure {pressure['status']} mae={pressure['mae_timesfm']} pers={pressure['mae_persistence']}")
     print(f"wrote {FORECAST}")

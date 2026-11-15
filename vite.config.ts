@@ -54,8 +54,8 @@ export default defineConfig(({ mode }) => ({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'dtm/gale_aoi_4m.bin', 'dtm/gale_aoi_4m.json'],
       manifest: {
-        name: 'MIRADOR · Mars EVA planner',
-        short_name: 'MIRADOR',
+        name: 'AEOLIS · Mars EVA planner',
+        short_name: 'AEOLIS',
         description: 'Hyperlocal Mars map to plan a safe science EVA on lower Mount Sharp.',
         theme_color: '#05070a',
         background_color: '#05070a',

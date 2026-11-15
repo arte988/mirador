@@ -15,6 +15,7 @@ import { defaults as defaultInteractions } from 'ol/interaction/defaults'
 import { LAYER_DEFS, type LayerDef } from '../../data/layers.ts'
 import { HABITAT, SCIENCE_STOPS, SITES, SUPPORT_ROVER } from '../../data/sites.ts'
 import { formatLonLat, type LonLat } from '../../lib/crsMars.ts'
+import { DRAW_CLICK_GAP_MS, DRAW_CLICK_MIN_PX, drawClickDecision } from '../../lib/drawClick.ts'
 import { getDtm, getSlope, useDtm } from '../../lib/dtmStore.ts'
 import { sampleElevation } from '../../lib/dtm.ts'
 import { router } from '../../lib/routerClient.ts'
@@ -124,16 +125,49 @@ export default function MarsMap() {
       if (c) setCenter([c[0], c[1]])
       setResolution(map.getView().getResolution() ?? 0.0001)
     })
+    let lastDrawAt = 0
+    let drawTimer = 0
+    let pendingPoint: LonLat | null = null
+    const clearPendingPoint = () => {
+      window.clearTimeout(drawTimer)
+      drawTimer = 0
+      pendingPoint = null
+    }
     map.on('dblclick', (e) => {
-      if (useMissionStore.getState().drawMode !== 'none') e.preventDefault()
+      const st = useMissionStore.getState()
+      if (st.drawMode === 'none') return
+      e.preventDefault()
+      clearPendingPoint()
+      const min = st.drawMode === 'nogo' ? 3 : 2
+      if (st.draft.length >= min) st.finishDraft()
     })
     map.on('click', (e) => {
       const st = useMissionStore.getState()
       const ll: LonLat = [e.coordinate[0], e.coordinate[1]]
       if (st.drawMode !== 'none') {
         const detail = (e.originalEvent as MouseEvent | undefined)?.detail ?? 1
-        if (detail > 1) return
-        st.addDraftPoint(ll)
+        const now = performance.now()
+        const px = map.getPixelFromCoordinate(e.coordinate)
+        const prev = pendingPoint ?? st.draft[st.draft.length - 1]
+        const prevPx = prev ? map.getPixelFromCoordinate(prev) : null
+        const pixel: [number, number] | null = px ? [px[0], px[1]] : null
+        const previousPixel: [number, number] | null = prevPx ? [prevPx[0], prevPx[1]] : null
+        const decision = drawClickDecision({ detail, now, lastClickAt: lastDrawAt, pixel, previousPixel })
+        if (decision === 'ignore') {
+          const near = pixel && previousPixel && Math.hypot(pixel[0] - previousPixel[0], pixel[1] - previousPixel[1]) < DRAW_CLICK_MIN_PX
+          if (detail > 1 || near) clearPendingPoint()
+          lastDrawAt = now
+          return
+        }
+        clearPendingPoint()
+        lastDrawAt = now
+        pendingPoint = ll
+        drawTimer = window.setTimeout(() => {
+          pendingPoint = null
+          drawTimer = 0
+          if (useMissionStore.getState().drawMode === 'none') return
+          useMissionStore.getState().addDraftPoint(ll)
+        }, DRAW_CLICK_GAP_MS)
         return
       }
       // Select a stop when clicking close to it (pixel tolerance).
@@ -149,6 +183,7 @@ export default function MarsMap() {
     })
     setReady(true)
     return () => {
+      clearPendingPoint()
       registerMap(null)
       map.setTarget(undefined)
       mapRef.current = null

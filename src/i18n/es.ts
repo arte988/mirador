@@ -3,7 +3,7 @@ import type { Messages } from './en'
 /** Latin American Spanish. Typed against en.ts so a missing key is a compile error. */
 export const es: Messages = {
   app: {
-    name: 'MIRADOR',
+    name: 'AEOLIS',
     tagline: 'Un mapa hiperlocal de Marte en capas para planear y caminar una EVA científica segura en Mount Sharp.',
     site: 'Cráter Gale · faldas de Mount Sharp (unidad boxwork)',
     skip: 'Saltar al contenido principal',
@@ -28,6 +28,13 @@ export const es: Messages = {
     route: 'Ruta',
     images: 'Imágenes',
     climate: 'Clima · IA',
+    tab: {
+      route: 'Ruta',
+      safety: 'Segur.',
+      climate: 'Clima',
+      layers: 'Capas',
+      images: 'Imágenes',
+    },
     credits: 'Créditos',
     primary: 'Navegación principal',
     back: 'Volver',
@@ -47,7 +54,7 @@ export const es: Messages = {
   },
   home: {
     title: 'Planea una Marswalk segura',
-    body: 'MIRADOR apila datos de la NASA (óptico, térmico, topográfico, geológico, clima y clima espacial) en un solo mapa de Marte y dibuja una ruta caminable hacia paradas científicas en el boxwork. No finge que un mapa global puede ver un solo paso.',
+    body: 'AEOLIS apila datos de la NASA (óptico, térmico, topográfico, geológico, clima y clima espacial) en un solo mapa de Marte y dibuja una ruta caminable hacia paradas científicas en el boxwork. No finge que un mapa global puede ver un solo paso.',
     start: 'Planear ruta',
     aiTitle: 'El simulador de clima usa IA',
     aiBody: 'TimesFM 2.5 pronostica los próximos soles de temperatura y presión en Gale a partir de la serie publicada de Curiosity. Un número se muestra solo si el modelo supera el valor de ayer. La opacidad del polvo no se inventa. Es un pronóstico estadístico, no física atmosférica.',
@@ -122,7 +129,7 @@ export const es: Messages = {
       envelope: {
         name: 'Envolvente de regreso',
         help: 'Tiempo de ida y vuelta en el mejor caso desde el hábitat: contornos cian finos cada hora y borde ámbar donde el viaje ya no cabe en el tiempo útil del traje. Aparece al planificar.',
-        credit: 'Calculado por MIRADOR (consumibles simulados)',
+        credit: 'Calculado por AEOLIS (consumibles simulados)',
       },
       comms: {
         name: 'Línea de vista de comunicaciones',
@@ -397,6 +404,13 @@ export const es: Messages = {
     hudNone: 'IA · sin predicción de temperatura del aire',
     zone: 'Zona',
     zoneGale: 'Gale (REMS de Curiosity)',
+    zoneRidgeA: 'Cresta A',
+    zoneRidgeB: 'Cresta B',
+    zoneRidgeC: 'Cresta C',
+    estimatedFrom: '{{name}} · estimado desde Gale',
+    estimatedNote: 'Estimado desde Gale. La misma serie precalculada, no un sensor en esta cresta.',
+    expand: 'Ampliar gráfica',
+    expandTitle: 'Gráfica de clima',
     variable: 'Variable',
     horizon: 'Horizonte',
     horizonSols: '{{n}} soles',
@@ -417,17 +431,20 @@ export const es: Messages = {
       red: 'Rojo',
     },
     riskNote: 'El color sigue el cambio de temperatura. Supuesto de planificación, no una regla de vuelo. Esto no enciende el escenario de tormenta de polvo.',
-    riskPressure: 'La escala verde / ámbar / rojo es solo para la temperatura del aire.',
+    riskPressure: 'Neutro',
+    pressureNeutral: 'Neutro',
+    vsPreviousSol: '{{n}} {{unit}} respecto al sol anterior',
     whatIfTitle: 'Qué pasaría con más CO₂',
     whatIfWarning: 'Simulación educativa, no es un modelo de física atmosférica.',
     whatIfSlider: 'CO₂ extra {{n}} %',
-    whatIfRule: 'A +50 % la mediana publicada se desplaza +2 K y +10 Pa. El desplazamiento es proporcional. No es una sensibilidad climática.',
+    whatIfRule: 'Desde +1 % la mediana publicada se desplaza en proporción, hasta +2 K y +10 Pa a +50 %. No es una sensibilidad climática.',
+    whatIfValue: 'Mediana desplazada {{n}} {{unit}}',
     precomputed: 'TimesFM 2.5 · precalculado',
     generated: 'Generado {{when}} UTC',
   },
   notFound: {
     title: 'Página no encontrada',
-    body: 'Esa dirección no forma parte de MIRADOR.',
+    body: 'Esa dirección no forma parte de AEOLIS.',
     back: 'Volver al plan',
   },
   map: {
@@ -524,6 +541,6 @@ export const es: Messages = {
   },
   credits: {
     title: 'Créditos',
-    body: 'NASA / JPL-Caltech, USGS Astrogeology, ASU THEMIS, Universidad de Arizona HiRISE, MSSS, Centro de Astrobiología (REMS). MIRADOR es un prototipo de NASA Space Apps, no un producto oficial de la NASA.',
+    body: 'NASA / JPL-Caltech, USGS Astrogeology, ASU THEMIS, Universidad de Arizona HiRISE, MSSS, Centro de Astrobiología (REMS). AEOLIS es un prototipo de NASA Space Apps, no un producto oficial de la NASA.',
   },
 }

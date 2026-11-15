@@ -1,7 +1,7 @@
 /**
  * Local DTM access.
  *
- * Numeric elevation in MIRADOR only comes from a local DTM crop (never from the 8-bit Trek PNG tiles).
+ * Numeric elevation in AEOLIS only comes from a local DTM crop (never from the 8-bit Trek PNG tiles).
  * The committed crop is built by `scripts/make-dtm.mjs` from the USGS "MSL Gale DEM Mosaic 1 m v3"
  * (HiRISE DTM mosaic), averaged to 4 m cells and stored as Int16 (0.1 m steps above a base height).
  * Source: https://astrogeology.usgs.gov/search/map/mars_msl_gale_merged_dem_1m

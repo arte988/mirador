@@ -2,5 +2,20 @@
   {
     "id": "gale",
     "url": "/forecasts/gale.json"
+  },
+  {
+    "id": "ridge-a",
+    "url": "/forecasts/ridge-a.json",
+    "estimated_from": "gale"
+  },
+  {
+    "id": "ridge-b",
+    "url": "/forecasts/ridge-b.json",
+    "estimated_from": "gale"
+  },
+  {
+    "id": "ridge-c",
+    "url": "/forecasts/ridge-c.json",
+    "estimated_from": "gale"
   }
 ]

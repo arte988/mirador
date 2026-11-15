@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildChartPoints } from './climateChart.ts'
+import { buildChartPoints, chartYDomain } from './climateChart.ts'
 import { sliceQuantiles, type ForecastSeries } from './climateForecast.ts'
 import { walkRisk } from '../data/climateRisk.ts'
 import { applyCo2, co2Offset } from './climateWhatIf.ts'
@@ -51,6 +51,7 @@ describe('educational CO2 shift', () => {
     expect(co2Offset(25, 'pressure')).toBe(5)
     expect(applyCo2([-38, -37], 50, 't_air')).toEqual([-36, -35])
     expect(applyCo2([777], 50, 'pressure')).toEqual([787])
+    expect(applyCo2([-38.222], 1, 't_air')).toEqual([-38.182])
   })
   it('does not amplify past the slider cap', () => {
     expect(co2Offset(80, 't_air')).toBe(2)
@@ -76,5 +77,12 @@ describe('chart points', () => {
     expect(points[0]).toMatchObject({ history: -39, forecast: null, whatIf: null })
     expect(points[1]).toMatchObject({ history: -38, forecast: -38, whatIf: -38 })
     expect(points[2]).toMatchObject({ history: null, forecast: -37, band: [-40, -36], whatIf: -35 })
+  })
+  it('pads the axis by 5% and does not start at zero', () => {
+    const [min, max] = chartYDomain([-40, -36])
+    expect(min).toBeCloseTo(-40.2)
+    expect(max).toBeCloseTo(-35.8)
+    expect(min).toBeLessThan(-40)
+    expect(max).toBeLessThan(0)
   })
 })

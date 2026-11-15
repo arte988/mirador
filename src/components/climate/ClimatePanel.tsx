@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { walkRisk, type WalkRisk } from '../../data/climateRisk.ts'
 import { buildChartPoints } from '../../lib/climateChart.ts'
 import { FORECAST_URL, HORIZONS, sliceQuantiles, type ClimateVariable, type GaleForecast, type Horizon } from '../../lib/climateForecast.ts'
-import { loadForecast, loadForecastZones, type ForecastZone } from '../../lib/climateLoad.ts'
+import { loadForecastZones, loadZoneForecast, type ForecastZone } from '../../lib/climateLoad.ts'
 import { resolveWhatIf } from '../../lib/climateWhatIf.ts'
 import { LEVEL_STYLE } from '../safety/SafetyPanel.tsx'
 import ClimateChart from './ClimateChart.tsx'
@@ -12,6 +12,18 @@ const control = 'mt-1 w-full min-h-[var(--spacing-touch)] rounded-md border bord
 
 function fmt(n: number): string {
   return n.toFixed(1)
+}
+
+function signed(n: number): string {
+  const text = fmt(n)
+  return n > 0 ? `+${text}` : text
+}
+
+const ZONE_KEY: Record<string, string> = {
+  gale: 'climate.zoneGale',
+  'ridge-a': 'climate.zoneRidgeA',
+  'ridge-b': 'climate.zoneRidgeB',
+  'ridge-c': 'climate.zoneRidgeC',
 }
 
 export default function ClimatePanel() {
@@ -24,6 +36,8 @@ export default function ClimatePanel() {
   const [horizon, setHorizon] = useState<Horizon>(3)
   const [co2, setCo2] = useState(0)
   const [whatIf, setWhatIf] = useState<number[] | null>(null)
+  const [expanded, setExpanded] = useState(false)
+  const dialogRef = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
     void loadForecastZones().then((next) => {
@@ -36,7 +50,7 @@ export default function ClimatePanel() {
     const zone = zones.find((z) => z.id === zoneId) ?? zones[0]
     if (!zone) return
     let cancel = false
-    void loadForecast(zone.url).then((r) => {
+    void loadZoneForecast(zone.url).then((r) => {
       if (cancel) return
       setFile(r.data)
       setMissing(r.data === null)
@@ -52,7 +66,7 @@ export default function ClimatePanel() {
   const q50Key = sliced.q50.join(',')
 
   useEffect(() => {
-    if (!file || sliced.q50.length === 0 || co2 === 0) {
+    if (!file || sliced.q50.length === 0 || co2 < 1) {
       setWhatIf(null)
       return
     }
@@ -103,6 +117,23 @@ export default function ClimatePanel() {
   const unit = series?.unit ?? (variable === 't_air' ? 'C' : 'Pa')
   const unitLabel = unit === 'C' ? '°C' : unit
   const generated = file ? formatGenerated(file.generated_at_utc, i18n.language) : ''
+  const prevSol = step <= 0 ? lastValue : (sliced.q50[step - 1] ?? lastValue)
+  const vsPrev = predicted !== null && prevSol !== null ? Math.round((predicted - prevSol) * 10) / 10 : null
+  const labelFor = (id: string, estimatedFrom?: string) => {
+    const key = ZONE_KEY[id]
+    const name = key ? t(key) : id
+    return estimatedFrom ? t('climate.estimatedFrom', { name }) : name
+  }
+  const zone = zones.find((z) => z.id === zoneId) ?? zones[0]
+  const zoneText = zone ? labelFor(zone.id, zone.estimatedFrom ?? file?.estimated_from) : ''
+  const chartCaption = t('climate.chartCaption', { variable: t(variable === 't_air' ? 'climate.tAirShort' : 'climate.pressureShort') })
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+    if (expanded && !dialog.open) dialog.showModal()
+    else if (!expanded && dialog.open) dialog.close()
+  }, [expanded])
 
   return (
     <section className="flex flex-col gap-3" aria-labelledby="climate-title">
@@ -114,14 +145,18 @@ export default function ClimatePanel() {
       <p className="text-xs text-muted">{t('climate.shared')}</p>
 
       <div className="grid gap-2 sm:grid-cols-3">
-        <label className="text-xs text-fg" htmlFor="climate-zone">
+        <div className="text-xs text-fg">
           <span className="label">{t('climate.zone')}</span>
-          <select id="climate-zone" className={control} value={zoneId} onChange={(e) => setZoneId(e.target.value)}>
-            {zones.map((z) => (
-              <option key={z.id} value={z.id}>{z.id === 'gale' ? t('climate.zoneGale') : z.id}</option>
-            ))}
-          </select>
-        </label>
+          {zones.length < 2 ? (
+            <p className="mt-1 min-h-[var(--spacing-touch)] text-sm text-fg">{zoneText}</p>
+          ) : (
+            <select id="climate-zone" className={control} value={zoneId} onChange={(e) => setZoneId(e.target.value)} aria-label={t('climate.zone')}>
+              {zones.map((z) => (
+                <option key={z.id} value={z.id}>{labelFor(z.id, z.estimatedFrom)}</option>
+              ))}
+            </select>
+          )}
+        </div>
         <label className="text-xs text-fg" htmlFor="climate-variable">
           <span className="label">{t('climate.variable')}</span>
           <select id="climate-variable" className={control} value={variable} onChange={(e) => setVariable(e.target.value as ClimateVariable)}>
@@ -147,12 +182,15 @@ export default function ClimatePanel() {
         <p className="text-xs text-caution" role="status">{t('climate.shortHorizon', { have: sliced.q50.length, asked: horizon })}</p>
       )}
 
+      {file?.estimated_from && <p className="text-xs text-caution">{t('climate.estimatedNote')}</p>}
+
       {points.length > 0 && (
-        <ClimateChart
-          points={points}
-          unit={unit}
-          caption={t('climate.chartCaption', { variable: t(variable === 't_air' ? 'climate.tAirShort' : 'climate.pressureShort') })}
-        />
+        <div className="flex flex-col gap-2">
+          <div className="flex justify-end">
+            <button type="button" className="btn btn-sm" onClick={() => setExpanded(true)} aria-haspopup="dialog">{t('climate.expand')}</button>
+          </div>
+          <ClimateChart points={points} unit={unit} caption={chartCaption} />
+        </div>
       )}
 
       {predicted !== null && low !== null && high !== null && (
@@ -169,7 +207,17 @@ export default function ClimatePanel() {
           {variable === 't_air' && delta !== null && (
             <p className="mt-1 text-xs text-muted">{t('climate.delta', { k: delta })}</p>
           )}
-          <p className="mt-1 text-xs text-muted">{variable === 't_air' ? t('climate.riskNote') : t('climate.riskPressure')}</p>
+          {variable === 't_air' ? (
+            <p className="mt-1 text-xs text-muted">{t('climate.riskNote')}</p>
+          ) : (
+            vsPrev !== null && (
+              <p className="mt-2 inline-flex items-center gap-1 rounded-md border border-line bg-surface-2 px-2 py-1 text-sm font-bold text-fg">
+                <span aria-hidden="true">○</span>
+                {t('climate.pressureNeutral')}
+                <span className="font-normal">{t('climate.vsPreviousSol', { n: signed(vsPrev), unit: unitLabel })}</span>
+              </p>
+            )
+          )}
         </div>
       )}
 
@@ -190,6 +238,9 @@ export default function ClimatePanel() {
           />
         </label>
         <p className="mt-1 text-xs text-muted">{t('climate.whatIfRule')}</p>
+        {whatIf && whatIf.length > 0 && (
+          <p className="mt-1 text-sm font-bold text-[#e879f9]">{t('climate.whatIfValue', { n: fmt(whatIf[whatIf.length - 1] ?? 0), unit: unitLabel })}</p>
+        )}
       </fieldset>
 
       {file && (
@@ -198,6 +249,18 @@ export default function ClimatePanel() {
           {generated ? <span className="ml-2">{t('climate.generated', { when: generated })}</span> : null}
         </p>
       )}
+      <dialog
+        ref={dialogRef}
+        className="w-[min(960px,calc(100vw-2rem))] rounded-xl border border-line bg-surface p-4 text-fg backdrop:bg-black/75"
+        aria-labelledby="climate-chart-dialog-title"
+        onClose={() => setExpanded(false)}
+      >
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <h3 id="climate-chart-dialog-title" className="text-sm font-bold uppercase tracking-wider">{t('climate.expandTitle')}</h3>
+          <button type="button" className="btn btn-sm" onClick={() => setExpanded(false)}>{t('app.close')}</button>
+        </div>
+        <ClimateChart points={points} unit={unit} caption={chartCaption} tall />
+      </dialog>
     </section>
   )
 }

@@ -28,8 +28,8 @@ export default function Sheet() {
       <div className="flex items-center gap-2 border-b border-line p-2">
         <div role="tablist" className="flex min-w-0 flex-1 gap-1 overflow-x-auto">
           {tabs.map((id) => (
-            <button key={id} type="button" role="tab" aria-selected={panel === id} className={`btn btn-sm shrink-0 ${panel === id ? 'btn-primary' : ''}`} onClick={() => setPanel(id)}>
-              {t(id === 'eva' ? 'eva.short' : `nav.${id}`)}
+            <button key={id} type="button" role="tab" aria-selected={panel === id} title={t(id === 'eva' ? 'eva.short' : `nav.${id}`)} className={`btn btn-sm shrink-0 whitespace-nowrap ${panel === id ? 'btn-primary' : ''}`} onClick={() => setPanel(id)}>
+              {t(id === 'eva' ? 'eva.short' : `nav.tab.${id}`)}
             </button>
           ))}
         </div>

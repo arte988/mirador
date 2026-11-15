@@ -1,7 +1,7 @@
 /**
  * Mars geometry helpers.
  *
- * MIRADOR uses a simple cylindrical (equirectangular) CRS on the Mars 2000 sphere
+ * AEOLIS uses a simple cylindrical (equirectangular) CRS on the Mars 2000 sphere
  * (IAU/IAG, R = 3 396 190 m), planetocentric latitude, east-positive longitude.
  * This matches the JPL Mars Trek "EQ" WMTS tile matrix sets (TopLeft -180 90, 2x1 tiles at level 0)
  * and the USGS MSL Gale DEM mosaic. Never use Web Mercator / EPSG:3857 for Mars, and never rely

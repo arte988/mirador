@@ -23,7 +23,7 @@ export interface ForecastSeries {
 
 export interface GaleForecast {
   schema: 1
-  zone_id: 'gale'
+  zone_id: string
   generated_at_utc: string
   step: 'sol'
   horizon_steps: number
@@ -31,6 +31,8 @@ export interface GaleForecast {
   license: string
   data_kind: 'prediction' | 'unavailable'
   shared_point: string
+  /** Set on ridge copies. The numbers are the Gale series, not a sensor on that ridge. */
+  estimated_from?: string
   last_measured: {
     kind: 'measured'
     sol: number
@@ -51,10 +53,20 @@ export interface MeasuredSol {
   pressure_pa: number
 }
 
-export function isGaleForecast(v: unknown): v is GaleForecast {
+function hasForecastShape(v: unknown): v is GaleForecast {
   if (!v || typeof v !== 'object') return false
   const o = v as GaleForecast
-  return o.schema === 1 && o.zone_id === 'gale' && !!o.series?.t_air && !!o.last_measured
+  return o.schema === 1 && typeof o.zone_id === 'string' && o.zone_id.length > 0 && !!o.series?.t_air && !!o.last_measured
+}
+
+/** Gale file used by the HUD. Ridge copies are a different zone and fail this check. */
+export function isGaleForecast(v: unknown): v is GaleForecast {
+  return hasForecastShape(v) && v.zone_id === 'gale'
+}
+
+/** Climate tab: Gale or a file derived from it. Does not invent quantiles. */
+export function isZoneForecast(v: unknown): v is GaleForecast {
+  return hasForecastShape(v)
 }
 
 /** How many kelvin colder the q50 band gets versus the last measured midpoint. Null when there is no prediction. */

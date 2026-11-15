@@ -44,7 +44,7 @@ export default function PlanLayout({ initialPanel }: { initialPanel?: 'climate' 
         <div className="shrink-0 border-b border-line p-2">
           <SafetyBadge onClick={() => setPanel('safety')} />
         </div>
-        <div role="tablist" aria-label={t('nav.panels')} className="flex shrink-0 gap-1 overflow-x-auto border-b border-line p-2">
+        <div role="tablist" aria-label={t('nav.panels')} className="scrollbar-thin flex w-full min-w-0 shrink-0 gap-1 overflow-x-auto border-b border-line p-2">
           {tabs.map((id) => (
             <button
               key={id}
@@ -53,10 +53,11 @@ export default function PlanLayout({ initialPanel }: { initialPanel?: 'climate' 
               id={`tab-${id}`}
               aria-selected={tab === id}
               aria-controls={`panel-${id}`}
-              className={`btn btn-sm shrink-0 ${tab === id ? 'btn-primary' : ''}`}
+              title={t(`nav.${id}`)}
+              className={`btn btn-sm shrink-0 whitespace-nowrap ${tab === id ? 'btn-primary' : ''}`}
               onClick={() => setPanel(id)}
             >
-              {t(`nav.${id}`)}
+              {t(`nav.tab.${id}`)}
             </button>
           ))}
         </div>

@@ -20,7 +20,7 @@ export interface SpaceWeatherData {
 
 /** Notification types that count as "other" solar activity. "Report" is only a summary document. */
 export const ACTIVITY_TYPES = ['CME', 'FLR', 'GST', 'IPS', 'RBE', 'MPC']
-/** MIRADOR planning window, not a DONKI threshold; impact fields: https://ccmc.gsfc.nasa.gov/DONKI/api/openapi/ */
+/** AEOLIS planning window, not a DONKI threshold; impact fields: https://ccmc.gsfc.nasa.gov/DONKI/api/openapi/ */
 export const MARS_IMPACT_PAST_H = 6
 export const MARS_IMPACT_AHEAD_H = 72
 

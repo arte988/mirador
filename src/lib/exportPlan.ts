@@ -55,10 +55,10 @@ export function cueCardHtml(): string {
       ]
     : [['Plan', 'No route']]
   const body = rows.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join('')
-  return `<!doctype html><html><head><meta charset="utf-8"><title>MIRADOR EVA cue card</title>
+  return `<!doctype html><html><head><meta charset="utf-8"><title>AEOLIS EVA cue card</title>
 <style>body{font:14px/1.4 system-ui,sans-serif;color:#111;padding:24px;max-width:640px}h1{font-size:20px}table{width:100%;border-collapse:collapse}th{text-align:left;padding:4px 8px 4px 0;color:#555}td{padding:4px 0}p.note{color:#555;font-size:12px}</style></head>
 <body>
-<h1>MIRADOR · EVA cue card</h1>
+<h1>AEOLIS · EVA cue card</h1>
 <p>Gale crater · lower Mount Sharp. Prototype planning assumptions, not NASA flight procedure.</p>
 <table>${body}</table>
 <p class="note">O2, battery and dose are simulated / reference values. Geologic map is regional only. Stop coordinates are prototype picks.</p>
