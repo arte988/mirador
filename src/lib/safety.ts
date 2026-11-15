@@ -20,7 +20,8 @@ export interface SpaceWeatherSummary {
   hoursSinceSep: number | null
   /** Hours since the most recent CME/FLR/GST/IPS/RBE notification, null when none in the window. */
   hoursSinceOther: number | null
-  /** Mars-directed impact in the WSA-ENLIL list within the window (to verify against DONKI docs). */
+  /** Modeled Mars impact in our planning window, including glancing and minor entries.
+   * DONKI schema: https://ccmc.gsfc.nasa.gov/DONKI/api/openapi/ */
   marsImpactSoon: boolean
   /** True when DONKI could not be loaded at all (no key, network). */
   unknown: boolean
