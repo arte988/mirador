@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HABITAT } from '../../data/sites.ts'
 import { abortNow } from '../../lib/abortNow.ts'
+import { preloadForecast } from '../../lib/climateLoad.ts'
+import type { GaleForecast } from '../../lib/climateForecast.ts'
 import { fmtDuration, fmtKm, pct } from '../../lib/format.ts'
 import { backTimeAt, usePlanData } from '../../stores/usePlanData.ts'
 import { useClock } from '../../lib/useClock.ts'
@@ -21,6 +24,12 @@ export default function HudLayout() {
   const status = useMissionStore((s) => s.walkStatus)
   const planStatus = useMissionStore((s) => s.planStatus)
   const { setWalk } = useMissionStore.getState()
+  const [forecast, setForecast] = useState<GaleForecast | null>(null)
+  useEffect(() => {
+    void preloadForecast().then((r) => setForecast(r.data))
+  }, [])
+  const air = forecast?.series.t_air
+  const pred = air?.status === 'prediction' && air.q50.length > 0
   const grid = usePlanData((s) => s.grid)
   const back = usePlanData((s) => s.back)
   const level = safety?.level ?? 'amber'
@@ -46,6 +55,11 @@ export default function HudLayout() {
         </div>
         <div className="pointer-events-auto mx-auto flex max-w-md flex-col gap-2 rounded-2xl border border-line bg-surface/90 p-3 text-center">
           <p className="hud-text text-2xl font-bold">{next}</p>
+          <p className="text-sm text-fg">
+            {pred && air
+              ? t('climate.hud', { kind: t('climate.pred'), t: air.q50[0], lo: Math.min(...air.q10), hi: Math.max(...air.q90) })
+              : t('climate.hudNone')}
+          </p>
           {sim?.nextDistanceM != null && <p className="text-sm text-muted">{fmtKm(sim.nextDistanceM)} · {t('eva.habBack', { t: fmtDuration(backS) })}</p>}
           <dl className="grid grid-cols-3 gap-2 text-sm">
             <div><dt className="label">{t('eva.o2')}</dt><dd className="hud-text text-lg">{sim ? pct(sim.o2) : '—'}</dd></div>
@@ -55,7 +69,7 @@ export default function HudLayout() {
           <p className="text-xs text-caution">{t('eva.hudNote')}</p>
           <div className="flex justify-center gap-2">
             {status !== 'walking' && status !== 'aborting' && (
-              <button type="button" className="btn btn-primary" onClick={() => setWalk({ walkStatus: 'walking' })}>{t('eva.start')}</button>
+              <button type="button" className="btn btn-primary" onClick={() => { void preloadForecast(); setWalk({ walkStatus: 'walking' }) }}>{t('eva.start')}</button>
             )}
             {(status === 'walking' || status === 'aborting') && (
               <button type="button" className="btn" onClick={() => setWalk({ walkStatus: 'paused' })}>{t('eva.pause')}</button>

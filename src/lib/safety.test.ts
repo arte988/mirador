@@ -36,6 +36,12 @@ describe('safety semaphore', () => {
     expect(evaluateSafety({ ...base, daylightMin: 100 }).level).toBe('red')
     expect(evaluateSafety({ ...base, daylightMin: 210 }).level).toBe('amber')
   })
+  it('turns amber for a published cold forecast without raising the storm flag', () => {
+    const result = evaluateSafety({ ...base, forecastCold: { dropK: 20 } })
+    expect(result.level).toBe('amber')
+    expect(result.reasons.some((r) => r.key === 'forecastCold')).toBe(true)
+    expect(result.reasons.some((r) => r.key === 'dustStorm')).toBe(false)
+  })
   it('always explains itself', () => {
     expect(evaluateSafety(base).reasons.length).toBeGreaterThan(0)
   })

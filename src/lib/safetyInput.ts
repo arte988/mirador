@@ -16,6 +16,7 @@ export interface SafetyContext {
   routeMinutes: number | null
   reserveMin: number
   now: number
+  forecastCold?: { dropK: number } | null
 }
 
 export function buildSafetyInput(c: SafetyContext): SafetyInput {
@@ -41,5 +42,6 @@ export function buildSafetyInput(c: SafetyContext): SafetyInput {
     stormFlag: c.stormFlag,
     daylightMin: daylightRemainingMin(new Date(c.startMs), c.site.lon, c.site.lat),
     routeNeedMin: c.routeMinutes === null ? 0 : c.routeMinutes + c.reserveMin,
+    forecastCold: c.forecastCold ?? null,
   }
 }

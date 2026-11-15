@@ -41,6 +41,8 @@ export interface SafetyInput {
   daylightMin: number
   /** Planned walk time + dwell + reserve in minutes (0 if no route). */
   routeNeedMin: number
+  /** TimesFM q50 drop versus the last measured midpoint, when a prediction was published. */
+  forecastCold?: { dropK: number } | null
 }
 
 export interface Reason {
@@ -84,6 +86,7 @@ export function evaluateSafety(i: SafetyInput): SafetyResult {
   }
 
   if (i.stormFlag || i.scenario.dustStorm) add('storm', 'amber', 'dustStorm')
+  if (i.forecastCold) add('forecast-cold', 'amber', 'forecastCold', { k: i.forecastCold.dropK })
 
   const w = i.weather
   if (!w) add('weather-unknown', 'amber', 'weatherUnknown')

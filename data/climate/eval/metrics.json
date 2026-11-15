@@ -1,0 +1,56 @@
+{
+  "model": "google/timesfm-2.5-200m-pytorch",
+  "holdout_sols": 14,
+  "t_air": {
+    "unit": "C",
+    "status": "prediction",
+    "q10": [
+      -40.477,
+      -40.708,
+      -40.918
+    ],
+    "q50": [
+      -38.222,
+      -38.177,
+      -38.182
+    ],
+    "q90": [
+      -36.709,
+      -36.531,
+      -36.476
+    ],
+    "mae_persistence": 0.8929,
+    "mae_climatology": 1.1959,
+    "holdout_sols": 14,
+    "mae_timesfm": 0.8586,
+    "reason": "beats persistence"
+  },
+  "pressure": {
+    "unit": "Pa",
+    "status": "prediction",
+    "q10": [
+      774.124,
+      774.202,
+      773.325
+    ],
+    "q50": [
+      777.283,
+      777.807,
+      777.379
+    ],
+    "q90": [
+      780.913,
+      781.691,
+      781.648
+    ],
+    "mae_persistence": 1.2857,
+    "mae_climatology": 15.4668,
+    "holdout_sols": 14,
+    "mae_timesfm": 1.0588,
+    "reason": "beats persistence"
+  },
+  "tau_dust": {
+    "status": "unavailable",
+    "reason": "The MSL outreach feed has no numeric dust opacity. MCS tau is not in this sample."
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "zone_id": "gale",
+  "generated_at_utc": "2026-11-15T11:51:56Z",
+  "step": "sol",
+  "horizon_steps": 3,
+  "model": "google/timesfm-2.5-200m-pytorch",
+  "license": "Apache-2.0",
+  "data_kind": "prediction",
+  "shared_point": "Curiosity REMS is one rover. Ridge A-E share this series. It is not a reading at each stop.",
+  "last_measured": {
+    "kind": "measured",
+    "sol": 4995,
+    "t_air_c": -38.0,
+    "pressure_pa": 777.0,
+    "note": "t_air is the midpoint of the published min and max for that sol."
+  },
+  "series": {
+    "t_air": {
+      "unit": "C",
+      "status": "prediction",
+      "q10": [
+        -40.477,
+        -40.708,
+        -40.918
+      ],
+      "q50": [
+        -38.222,
+        -38.177,
+        -38.182
+      ],
+      "q90": [
+        -36.709,
+        -36.531,
+        -36.476
+      ],
+      "mae_persistence": 0.8929,
+      "mae_climatology": 1.1959,
+      "holdout_sols": 14,
+      "mae_timesfm": 0.8586,
+      "reason": "beats persistence"
+    },
+    "pressure": {
+      "unit": "Pa",
+      "status": "prediction",
+      "q10": [
+        774.124,
+        774.202,
+        773.325
+      ],
+      "q50": [
+        777.283,
+        777.807,
+        777.379
+      ],
+      "q90": [
+        780.913,
+        781.691,
+        781.648
+      ],
+      "mae_persistence": 1.2857,
+      "mae_climatology": 15.4668,
+      "holdout_sols": 14,
+      "mae_timesfm": 1.0588,
+      "reason": "beats persistence"
+    }
+  },
+  "tau_dust": {
+    "status": "unavailable",
+    "reason": "The MSL outreach feed has no numeric dust opacity. MCS tau is not in this sample."
+  },
+  "warnings": [
+    "One rover (Curiosity REMS). Ridge A-E share this series. Not a sensor at each stop.",
+    "t_air_c is the midpoint of the published min and max for that sol.",
+    "pressure_pa is the published sol pressure.",
+    "tau_dust is absent: this feed publishes a word (Sunny) and not a numeric opacity."
+  ]
+}

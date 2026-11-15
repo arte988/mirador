@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { abortNow } from '../../lib/abortNow.ts'
+import { preloadForecast } from '../../lib/climateLoad.ts'
 import { fmtDuration, pct } from '../../lib/format.ts'
 import { useEffectiveParams } from '../../lib/scenarioPlan.ts'
 import { useSimView } from '../../lib/useSim.ts'
@@ -18,7 +19,10 @@ export default function WalkControls() {
   const ready = planStatus === 'ready' && !!sim
   const running = status === 'walking' || status === 'aborting'
 
-  const start = () => setWalk({ walkStatus: 'walking', elapsedS: status === 'paused' || status === 'aborting' ? useMissionStore.getState().elapsedS : 0, abortRoute: status === 'aborting' ? useMissionStore.getState().abortRoute : null })
+  const start = () => {
+    void preloadForecast()
+    setWalk({ walkStatus: 'walking', elapsedS: status === 'paused' || status === 'aborting' ? useMissionStore.getState().elapsedS : 0, abortRoute: status === 'aborting' ? useMissionStore.getState().abortRoute : null })
+  }
   const pause = () => setWalk({ walkStatus: 'paused' })
   const reset = () => setWalk({ walkStatus: 'idle', elapsedS: 0, abortRoute: null })
 

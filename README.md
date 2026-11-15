@@ -18,6 +18,10 @@ npm run build
   `localStorage["mirador.lang"]`.
 - Every visible string goes through `t()` (`src/i18n/en.ts` is the source, `src/i18n/es.ts` is typed against it).
 
+## Gale forecast (TimesFM 2.5)
+
+`scripts/climate/` builds one daily series from the unofficial MSL weather feed and, when TimesFM 2.5 is installed, writes `public/forecasts/gale.json`. A variable is a prediction only if its one-step error beats persistence. Ridge A–E share that single rover series. Dust opacity is not in the feed and is not invented. See `scripts/climate/README.md`.
+
 ## Data sources
 
 | Source | What MIRADOR uses it as | Credit | Honesty |

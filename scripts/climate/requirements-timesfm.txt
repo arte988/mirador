@@ -1,0 +1,4 @@
+# CPU wheel. timesfm[torch] pulls the CUDA build (no GPU on this machine).
+#   .venv/bin/python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   .venv/bin/python -m pip install -r scripts/climate/requirements-timesfm.txt
+timesfm

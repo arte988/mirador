@@ -9,6 +9,7 @@ import { daylightRemainingMin, formatHours, ltstHours, marsTime, nextLtst, sunPo
 import { summarizeDonki } from '../../lib/spaceWeather.ts'
 import { useSafetyInput } from '../../lib/useSafety.ts'
 import { useMissionStore } from '../../stores/useMissionStore.ts'
+import ForecastCard from '../climate/ForecastCard.tsx'
 import { fmtDuration } from '../../lib/format.ts'
 
 export const LEVEL_STYLE: Record<Level, { text: string; border: string; bg: string; glyph: string }> = {
@@ -279,6 +280,8 @@ export default function SafetyPanel() {
         )}
         <p className="mt-2 text-xs text-muted">{t('safety.spaceNote')}</p>
       </div>
+
+      <ForecastCard />
 
       <fieldset className="rounded-lg border border-caution/60 p-3">
         <legend className="px-1 text-xs font-bold uppercase tracking-wider text-caution">{t('safety.injectorTitle')}</legend>

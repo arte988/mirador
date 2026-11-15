@@ -1,0 +1,1750 @@
+{
+  "zone_id": "gale",
+  "source_id": "msl-weather-rss",
+  "source_url": "https://mars.nasa.gov/rss/api/?feed=weather&category=msl&feedtype=json",
+  "disclaimer": "Unofficial NASA web feed (REMS, Centro de Astrobiologia), for outreach purposes only.",
+  "notes": [
+    "One rover (Curiosity REMS). Ridge A-E share this series. Not a sensor at each stop.",
+    "t_air_c is the midpoint of the published min and max for that sol.",
+    "pressure_pa is the published sol pressure.",
+    "tau_dust is absent: this feed publishes a word (Sunny) and not a numeric opacity."
+  ],
+  "rows": [
+    {
+      "sol": 4779,
+      "ls": 207.0,
+      "terrestrial_date": "2026-01-15",
+      "t_air_c": -35.0,
+      "pressure_pa": 765.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4780,
+      "ls": 207.0,
+      "terrestrial_date": "2026-01-16",
+      "t_air_c": -45.5,
+      "pressure_pa": 769.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4781,
+      "ls": 208.0,
+      "terrestrial_date": "2026-01-17",
+      "t_air_c": -47.0,
+      "pressure_pa": 772.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4782,
+      "ls": 209.0,
+      "terrestrial_date": "2026-01-18",
+      "t_air_c": -31.5,
+      "pressure_pa": 775.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4783,
+      "ls": 209.0,
+      "terrestrial_date": "2026-01-19",
+      "t_air_c": -32.5,
+      "pressure_pa": 775.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4784,
+      "ls": 210.0,
+      "terrestrial_date": "2026-01-20",
+      "t_air_c": -31.5,
+      "pressure_pa": 773.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4785,
+      "ls": 210.0,
+      "terrestrial_date": "2026-01-21",
+      "t_air_c": -33.0,
+      "pressure_pa": 779.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4786,
+      "ls": 211.0,
+      "terrestrial_date": "2026-01-22",
+      "t_air_c": -31.5,
+      "pressure_pa": 780.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4787,
+      "ls": 212.0,
+      "terrestrial_date": "2026-01-23",
+      "t_air_c": -31.0,
+      "pressure_pa": 779.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4788,
+      "ls": 212.0,
+      "terrestrial_date": "2026-01-24",
+      "t_air_c": -31.0,
+      "pressure_pa": 782.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4789,
+      "ls": 213.0,
+      "terrestrial_date": "2026-01-25",
+      "t_air_c": -32.5,
+      "pressure_pa": 782.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4790,
+      "ls": 214.0,
+      "terrestrial_date": "2026-01-26",
+      "t_air_c": -32.0,
+      "pressure_pa": 786.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4791,
+      "ls": 214.0,
+      "terrestrial_date": "2026-01-27",
+      "t_air_c": -33.5,
+      "pressure_pa": 786.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4792,
+      "ls": 215.0,
+      "terrestrial_date": "2026-01-28",
+      "t_air_c": -48.0,
+      "pressure_pa": 789.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4793,
+      "ls": 215.0,
+      "terrestrial_date": "2026-01-29",
+      "t_air_c": -31.5,
+      "pressure_pa": 794.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4794,
+      "ls": 216.0,
+      "terrestrial_date": "2026-01-30",
+      "t_air_c": -33.0,
+      "pressure_pa": 796.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4795,
+      "ls": 217.0,
+      "terrestrial_date": "2026-01-31",
+      "t_air_c": -31.5,
+      "pressure_pa": 797.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4796,
+      "ls": 217.0,
+      "terrestrial_date": "2026-02-01",
+      "t_air_c": -32.5,
+      "pressure_pa": 796.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4797,
+      "ls": 218.0,
+      "terrestrial_date": "2026-02-02",
+      "t_air_c": -31.5,
+      "pressure_pa": 796.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4798,
+      "ls": 219.0,
+      "terrestrial_date": "2026-02-03",
+      "t_air_c": -31.5,
+      "pressure_pa": 799.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4799,
+      "ls": 219.0,
+      "terrestrial_date": "2026-02-05",
+      "t_air_c": -32.0,
+      "pressure_pa": 804.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4800,
+      "ls": 220.0,
+      "terrestrial_date": "2026-02-06",
+      "t_air_c": -34.0,
+      "pressure_pa": 806.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4801,
+      "ls": 221.0,
+      "terrestrial_date": "2026-02-07",
+      "t_air_c": -32.5,
+      "pressure_pa": 807.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4802,
+      "ls": 221.0,
+      "terrestrial_date": "2026-02-08",
+      "t_air_c": -32.5,
+      "pressure_pa": 806.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4803,
+      "ls": 222.0,
+      "terrestrial_date": "2026-02-09",
+      "t_air_c": -32.5,
+      "pressure_pa": 806.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4804,
+      "ls": 222.0,
+      "terrestrial_date": "2026-02-10",
+      "t_air_c": -32.0,
+      "pressure_pa": 810.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4805,
+      "ls": 223.0,
+      "terrestrial_date": "2026-02-11",
+      "t_air_c": -32.0,
+      "pressure_pa": 815.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4806,
+      "ls": 224.0,
+      "terrestrial_date": "2026-02-12",
+      "t_air_c": -54.5,
+      "pressure_pa": 814.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4807,
+      "ls": 224.0,
+      "terrestrial_date": "2026-02-13",
+      "t_air_c": -36.0,
+      "pressure_pa": 815.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4808,
+      "ls": 225.0,
+      "terrestrial_date": "2026-02-14",
+      "t_air_c": -52.5,
+      "pressure_pa": 815.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4809,
+      "ls": 226.0,
+      "terrestrial_date": "2026-02-15",
+      "t_air_c": -51.0,
+      "pressure_pa": 814.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4810,
+      "ls": 226.0,
+      "terrestrial_date": "2026-02-16",
+      "t_air_c": -37.5,
+      "pressure_pa": 816.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4811,
+      "ls": 227.0,
+      "terrestrial_date": "2026-02-17",
+      "t_air_c": -37.0,
+      "pressure_pa": 819.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4812,
+      "ls": 228.0,
+      "terrestrial_date": "2026-02-18",
+      "t_air_c": -37.5,
+      "pressure_pa": 827.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4813,
+      "ls": 228.0,
+      "terrestrial_date": "2026-02-19",
+      "t_air_c": -37.0,
+      "pressure_pa": 829.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4814,
+      "ls": 229.0,
+      "terrestrial_date": "2026-02-20",
+      "t_air_c": -35.0,
+      "pressure_pa": 827.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4815,
+      "ls": 230.0,
+      "terrestrial_date": "2026-02-21",
+      "t_air_c": -36.0,
+      "pressure_pa": 828.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4816,
+      "ls": 230.0,
+      "terrestrial_date": "2026-02-22",
+      "t_air_c": -32.0,
+      "pressure_pa": 826.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4817,
+      "ls": 231.0,
+      "terrestrial_date": "2026-02-23",
+      "t_air_c": -49.5,
+      "pressure_pa": 827.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4818,
+      "ls": 231.0,
+      "terrestrial_date": "2026-02-24",
+      "t_air_c": -35.5,
+      "pressure_pa": 832.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4819,
+      "ls": 232.0,
+      "terrestrial_date": "2026-02-25",
+      "t_air_c": -34.5,
+      "pressure_pa": 836.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4820,
+      "ls": 233.0,
+      "terrestrial_date": "2026-02-26",
+      "t_air_c": -36.0,
+      "pressure_pa": 837.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4821,
+      "ls": 233.0,
+      "terrestrial_date": "2026-02-27",
+      "t_air_c": -54.5,
+      "pressure_pa": 835.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4822,
+      "ls": 234.0,
+      "terrestrial_date": "2026-02-28",
+      "t_air_c": -34.0,
+      "pressure_pa": 835.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4823,
+      "ls": 235.0,
+      "terrestrial_date": "2026-03-01",
+      "t_air_c": -48.5,
+      "pressure_pa": 834.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4824,
+      "ls": 235.0,
+      "terrestrial_date": "2026-03-02",
+      "t_air_c": -32.5,
+      "pressure_pa": 836.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4825,
+      "ls": 236.0,
+      "terrestrial_date": "2026-03-03",
+      "t_air_c": -33.5,
+      "pressure_pa": 843.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4826,
+      "ls": 237.0,
+      "terrestrial_date": "2026-03-04",
+      "t_air_c": -33.0,
+      "pressure_pa": 842.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4827,
+      "ls": 237.0,
+      "terrestrial_date": "2026-03-05",
+      "t_air_c": -32.0,
+      "pressure_pa": 841.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4828,
+      "ls": 238.0,
+      "terrestrial_date": "2026-03-06",
+      "t_air_c": -32.5,
+      "pressure_pa": 840.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4829,
+      "ls": 239.0,
+      "terrestrial_date": "2026-03-07",
+      "t_air_c": -32.5,
+      "pressure_pa": 840.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4830,
+      "ls": 239.0,
+      "terrestrial_date": "2026-03-08",
+      "t_air_c": -32.0,
+      "pressure_pa": 841.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4831,
+      "ls": 240.0,
+      "terrestrial_date": "2026-03-09",
+      "t_air_c": -34.0,
+      "pressure_pa": 847.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4832,
+      "ls": 241.0,
+      "terrestrial_date": "2026-03-10",
+      "t_air_c": -35.0,
+      "pressure_pa": 850.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4833,
+      "ls": 241.0,
+      "terrestrial_date": "2026-03-11",
+      "t_air_c": -33.5,
+      "pressure_pa": 846.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4834,
+      "ls": 242.0,
+      "terrestrial_date": "2026-03-12",
+      "t_air_c": -37.5,
+      "pressure_pa": 845.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4835,
+      "ls": 242.0,
+      "terrestrial_date": "2026-03-14",
+      "t_air_c": -55.0,
+      "pressure_pa": 844.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4836,
+      "ls": 243.0,
+      "terrestrial_date": "2026-03-15",
+      "t_air_c": -38.0,
+      "pressure_pa": 846.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4837,
+      "ls": 244.0,
+      "terrestrial_date": "2026-03-16",
+      "t_air_c": -38.0,
+      "pressure_pa": 848.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4838,
+      "ls": 244.0,
+      "terrestrial_date": "2026-03-17",
+      "t_air_c": -39.0,
+      "pressure_pa": 851.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4839,
+      "ls": 245.0,
+      "terrestrial_date": "2026-03-18",
+      "t_air_c": -53.0,
+      "pressure_pa": 849.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4840,
+      "ls": 246.0,
+      "terrestrial_date": "2026-03-19",
+      "t_air_c": -36.5,
+      "pressure_pa": 851.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4841,
+      "ls": 246.0,
+      "terrestrial_date": "2026-03-20",
+      "t_air_c": -51.5,
+      "pressure_pa": 849.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4842,
+      "ls": 247.0,
+      "terrestrial_date": "2026-03-21",
+      "t_air_c": -39.0,
+      "pressure_pa": 849.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4843,
+      "ls": 248.0,
+      "terrestrial_date": "2026-03-22",
+      "t_air_c": -39.5,
+      "pressure_pa": 849.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4844,
+      "ls": 248.0,
+      "terrestrial_date": "2026-03-23",
+      "t_air_c": -50.5,
+      "pressure_pa": 851.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4845,
+      "ls": 249.0,
+      "terrestrial_date": "2026-03-24",
+      "t_air_c": -39.0,
+      "pressure_pa": 854.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4846,
+      "ls": 250.0,
+      "terrestrial_date": "2026-03-25",
+      "t_air_c": -40.5,
+      "pressure_pa": 851.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4847,
+      "ls": 250.0,
+      "terrestrial_date": "2026-03-26",
+      "t_air_c": -54.5,
+      "pressure_pa": 852.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4848,
+      "ls": 251.0,
+      "terrestrial_date": "2026-03-27",
+      "t_air_c": -34.5,
+      "pressure_pa": 848.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4849,
+      "ls": 252.0,
+      "terrestrial_date": "2026-03-28",
+      "t_air_c": -35.5,
+      "pressure_pa": 851.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4850,
+      "ls": 252.0,
+      "terrestrial_date": "2026-03-29",
+      "t_air_c": -33.5,
+      "pressure_pa": 850.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4851,
+      "ls": 253.0,
+      "terrestrial_date": "2026-03-30",
+      "t_air_c": -33.0,
+      "pressure_pa": 851.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4852,
+      "ls": 254.0,
+      "terrestrial_date": "2026-03-31",
+      "t_air_c": -50.0,
+      "pressure_pa": 853.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4853,
+      "ls": 254.0,
+      "terrestrial_date": "2026-04-01",
+      "t_air_c": -33.5,
+      "pressure_pa": 851.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4854,
+      "ls": 255.0,
+      "terrestrial_date": "2026-04-02",
+      "t_air_c": -34.5,
+      "pressure_pa": 853.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4855,
+      "ls": 256.0,
+      "terrestrial_date": "2026-04-03",
+      "t_air_c": -33.5,
+      "pressure_pa": 851.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4856,
+      "ls": 256.0,
+      "terrestrial_date": "2026-04-04",
+      "t_air_c": -35.5,
+      "pressure_pa": 851.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4857,
+      "ls": 257.0,
+      "terrestrial_date": "2026-04-05",
+      "t_air_c": -35.5,
+      "pressure_pa": 849.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4858,
+      "ls": 257.0,
+      "terrestrial_date": "2026-04-06",
+      "t_air_c": -33.5,
+      "pressure_pa": 850.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4859,
+      "ls": 258.0,
+      "terrestrial_date": "2026-04-07",
+      "t_air_c": -36.5,
+      "pressure_pa": 849.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4860,
+      "ls": 259.0,
+      "terrestrial_date": "2026-04-08",
+      "t_air_c": -36.0,
+      "pressure_pa": 850.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4861,
+      "ls": 259.0,
+      "terrestrial_date": "2026-04-09",
+      "t_air_c": -37.5,
+      "pressure_pa": 850.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4862,
+      "ls": 260.0,
+      "terrestrial_date": "2026-04-10",
+      "t_air_c": -38.0,
+      "pressure_pa": 847.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4863,
+      "ls": 261.0,
+      "terrestrial_date": "2026-04-11",
+      "t_air_c": -37.5,
+      "pressure_pa": 847.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4864,
+      "ls": 261.0,
+      "terrestrial_date": "2026-04-12",
+      "t_air_c": -41.5,
+      "pressure_pa": 849.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4865,
+      "ls": 262.0,
+      "terrestrial_date": "2026-04-13",
+      "t_air_c": -35.0,
+      "pressure_pa": 847.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4866,
+      "ls": 263.0,
+      "terrestrial_date": "2026-04-14",
+      "t_air_c": -36.0,
+      "pressure_pa": 848.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4867,
+      "ls": 263.0,
+      "terrestrial_date": "2026-04-15",
+      "t_air_c": -36.0,
+      "pressure_pa": 846.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4868,
+      "ls": 264.0,
+      "terrestrial_date": "2026-04-16",
+      "t_air_c": -34.5,
+      "pressure_pa": 846.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4869,
+      "ls": 265.0,
+      "terrestrial_date": "2026-04-17",
+      "t_air_c": -32.5,
+      "pressure_pa": 842.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4870,
+      "ls": 265.0,
+      "terrestrial_date": "2026-04-18",
+      "t_air_c": -34.5,
+      "pressure_pa": 845.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4871,
+      "ls": 266.0,
+      "terrestrial_date": "2026-04-19",
+      "t_air_c": -33.0,
+      "pressure_pa": 844.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4872,
+      "ls": 267.0,
+      "terrestrial_date": "2026-04-21",
+      "t_air_c": -35.5,
+      "pressure_pa": 844.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4873,
+      "ls": 267.0,
+      "terrestrial_date": "2026-04-22",
+      "t_air_c": -35.5,
+      "pressure_pa": 843.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4874,
+      "ls": 268.0,
+      "terrestrial_date": "2026-04-23",
+      "t_air_c": -36.5,
+      "pressure_pa": 841.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4875,
+      "ls": 269.0,
+      "terrestrial_date": "2026-04-24",
+      "t_air_c": -35.5,
+      "pressure_pa": 841.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4876,
+      "ls": 269.0,
+      "terrestrial_date": "2026-04-25",
+      "t_air_c": -34.5,
+      "pressure_pa": 838.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4877,
+      "ls": 270.0,
+      "terrestrial_date": "2026-04-26",
+      "t_air_c": -35.0,
+      "pressure_pa": 841.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4878,
+      "ls": 270.0,
+      "terrestrial_date": "2026-04-27",
+      "t_air_c": -35.5,
+      "pressure_pa": 842.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4879,
+      "ls": 271.0,
+      "terrestrial_date": "2026-04-28",
+      "t_air_c": -36.5,
+      "pressure_pa": 842.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4880,
+      "ls": 272.0,
+      "terrestrial_date": "2026-04-29",
+      "t_air_c": -36.5,
+      "pressure_pa": 840.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4881,
+      "ls": 272.0,
+      "terrestrial_date": "2026-04-30",
+      "t_air_c": -35.5,
+      "pressure_pa": 840.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4882,
+      "ls": 273.0,
+      "terrestrial_date": "2026-05-01",
+      "t_air_c": -35.5,
+      "pressure_pa": 838.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4883,
+      "ls": 274.0,
+      "terrestrial_date": "2026-05-02",
+      "t_air_c": -37.0,
+      "pressure_pa": 838.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4884,
+      "ls": 274.0,
+      "terrestrial_date": "2026-05-03",
+      "t_air_c": -35.5,
+      "pressure_pa": 838.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4885,
+      "ls": 275.0,
+      "terrestrial_date": "2026-05-04",
+      "t_air_c": -36.0,
+      "pressure_pa": 837.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4886,
+      "ls": 276.0,
+      "terrestrial_date": "2026-05-05",
+      "t_air_c": -37.5,
+      "pressure_pa": 838.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4887,
+      "ls": 276.0,
+      "terrestrial_date": "2026-05-06",
+      "t_air_c": -35.5,
+      "pressure_pa": 837.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4888,
+      "ls": 277.0,
+      "terrestrial_date": "2026-05-07",
+      "t_air_c": -34.5,
+      "pressure_pa": 834.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4889,
+      "ls": 278.0,
+      "terrestrial_date": "2026-05-08",
+      "t_air_c": -36.5,
+      "pressure_pa": 834.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4890,
+      "ls": 278.0,
+      "terrestrial_date": "2026-05-09",
+      "t_air_c": -36.0,
+      "pressure_pa": 832.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4891,
+      "ls": 279.0,
+      "terrestrial_date": "2026-05-10",
+      "t_air_c": -36.0,
+      "pressure_pa": 832.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4892,
+      "ls": 279.0,
+      "terrestrial_date": "2026-05-11",
+      "t_air_c": -35.5,
+      "pressure_pa": 832.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4893,
+      "ls": 280.0,
+      "terrestrial_date": "2026-05-12",
+      "t_air_c": -35.0,
+      "pressure_pa": 830.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4894,
+      "ls": 281.0,
+      "terrestrial_date": "2026-05-13",
+      "t_air_c": -33.5,
+      "pressure_pa": 829.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4895,
+      "ls": 281.0,
+      "terrestrial_date": "2026-05-14",
+      "t_air_c": -36.0,
+      "pressure_pa": 827.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4896,
+      "ls": 282.0,
+      "terrestrial_date": "2026-05-15",
+      "t_air_c": -35.5,
+      "pressure_pa": 827.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4897,
+      "ls": 283.0,
+      "terrestrial_date": "2026-05-16",
+      "t_air_c": -34.5,
+      "pressure_pa": 826.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4898,
+      "ls": 283.0,
+      "terrestrial_date": "2026-05-17",
+      "t_air_c": -34.5,
+      "pressure_pa": 825.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4899,
+      "ls": 284.0,
+      "terrestrial_date": "2026-05-18",
+      "t_air_c": -35.5,
+      "pressure_pa": 826.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4900,
+      "ls": 285.0,
+      "terrestrial_date": "2026-05-19",
+      "t_air_c": -33.0,
+      "pressure_pa": 824.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4901,
+      "ls": 285.0,
+      "terrestrial_date": "2026-05-20",
+      "t_air_c": -36.0,
+      "pressure_pa": 824.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4902,
+      "ls": 286.0,
+      "terrestrial_date": "2026-05-21",
+      "t_air_c": -37.0,
+      "pressure_pa": 822.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4903,
+      "ls": 286.0,
+      "terrestrial_date": "2026-05-22",
+      "t_air_c": -35.5,
+      "pressure_pa": 822.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4904,
+      "ls": 287.0,
+      "terrestrial_date": "2026-05-23",
+      "t_air_c": -35.5,
+      "pressure_pa": 822.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4905,
+      "ls": 288.0,
+      "terrestrial_date": "2026-05-24",
+      "t_air_c": -34.5,
+      "pressure_pa": 819.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4906,
+      "ls": 288.0,
+      "terrestrial_date": "2026-05-25",
+      "t_air_c": -35.0,
+      "pressure_pa": 820.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4907,
+      "ls": 289.0,
+      "terrestrial_date": "2026-05-26",
+      "t_air_c": -37.0,
+      "pressure_pa": 820.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4908,
+      "ls": 290.0,
+      "terrestrial_date": "2026-05-28",
+      "t_air_c": -36.5,
+      "pressure_pa": 819.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4909,
+      "ls": 290.0,
+      "terrestrial_date": "2026-05-29",
+      "t_air_c": -35.5,
+      "pressure_pa": 820.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4910,
+      "ls": 291.0,
+      "terrestrial_date": "2026-05-30",
+      "t_air_c": -36.0,
+      "pressure_pa": 816.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4911,
+      "ls": 291.0,
+      "terrestrial_date": "2026-05-31",
+      "t_air_c": -35.5,
+      "pressure_pa": 818.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4912,
+      "ls": 292.0,
+      "terrestrial_date": "2026-06-01",
+      "t_air_c": -35.0,
+      "pressure_pa": 815.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4913,
+      "ls": 293.0,
+      "terrestrial_date": "2026-06-02",
+      "t_air_c": -35.0,
+      "pressure_pa": 815.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4914,
+      "ls": 293.0,
+      "terrestrial_date": "2026-06-03",
+      "t_air_c": -35.0,
+      "pressure_pa": 817.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4915,
+      "ls": 294.0,
+      "terrestrial_date": "2026-06-04",
+      "t_air_c": -35.0,
+      "pressure_pa": 813.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4916,
+      "ls": 295.0,
+      "terrestrial_date": "2026-06-05",
+      "t_air_c": -35.5,
+      "pressure_pa": 814.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4917,
+      "ls": 295.0,
+      "terrestrial_date": "2026-06-06",
+      "t_air_c": -35.0,
+      "pressure_pa": 812.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4918,
+      "ls": 296.0,
+      "terrestrial_date": "2026-06-07",
+      "t_air_c": -35.0,
+      "pressure_pa": 813.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4919,
+      "ls": 296.0,
+      "terrestrial_date": "2026-06-08",
+      "t_air_c": -35.5,
+      "pressure_pa": 813.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4920,
+      "ls": 297.0,
+      "terrestrial_date": "2026-06-09",
+      "t_air_c": -36.0,
+      "pressure_pa": 810.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4921,
+      "ls": 298.0,
+      "terrestrial_date": "2026-06-10",
+      "t_air_c": -35.0,
+      "pressure_pa": 813.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4922,
+      "ls": 298.0,
+      "terrestrial_date": "2026-06-11",
+      "t_air_c": -35.5,
+      "pressure_pa": 808.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4923,
+      "ls": 299.0,
+      "terrestrial_date": "2026-06-12",
+      "t_air_c": -35.5,
+      "pressure_pa": 809.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4924,
+      "ls": 300.0,
+      "terrestrial_date": "2026-06-13",
+      "t_air_c": -36.0,
+      "pressure_pa": 807.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4925,
+      "ls": 300.0,
+      "terrestrial_date": "2026-06-14",
+      "t_air_c": -38.0,
+      "pressure_pa": 806.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4926,
+      "ls": 301.0,
+      "terrestrial_date": "2026-06-15",
+      "t_air_c": -37.0,
+      "pressure_pa": 809.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4927,
+      "ls": 301.0,
+      "terrestrial_date": "2026-06-16",
+      "t_air_c": -34.5,
+      "pressure_pa": 804.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4928,
+      "ls": 302.0,
+      "terrestrial_date": "2026-06-17",
+      "t_air_c": -36.0,
+      "pressure_pa": 805.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4929,
+      "ls": 303.0,
+      "terrestrial_date": "2026-06-18",
+      "t_air_c": -37.0,
+      "pressure_pa": 801.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4930,
+      "ls": 303.0,
+      "terrestrial_date": "2026-06-19",
+      "t_air_c": -36.0,
+      "pressure_pa": 804.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4931,
+      "ls": 304.0,
+      "terrestrial_date": "2026-06-20",
+      "t_air_c": -35.5,
+      "pressure_pa": 806.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4932,
+      "ls": 304.0,
+      "terrestrial_date": "2026-06-21",
+      "t_air_c": -36.5,
+      "pressure_pa": 803.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4933,
+      "ls": 305.0,
+      "terrestrial_date": "2026-06-22",
+      "t_air_c": -36.0,
+      "pressure_pa": 804.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4934,
+      "ls": 306.0,
+      "terrestrial_date": "2026-06-23",
+      "t_air_c": -35.0,
+      "pressure_pa": 798.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4935,
+      "ls": 306.0,
+      "terrestrial_date": "2026-06-24",
+      "t_air_c": -36.0,
+      "pressure_pa": 801.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4936,
+      "ls": 307.0,
+      "terrestrial_date": "2026-06-25",
+      "t_air_c": -35.5,
+      "pressure_pa": 800.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4937,
+      "ls": 307.0,
+      "terrestrial_date": "2026-06-26",
+      "t_air_c": -36.5,
+      "pressure_pa": 798.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4938,
+      "ls": 308.0,
+      "terrestrial_date": "2026-06-27",
+      "t_air_c": -39.0,
+      "pressure_pa": 800.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4939,
+      "ls": 309.0,
+      "terrestrial_date": "2026-06-28",
+      "t_air_c": -34.5,
+      "pressure_pa": 796.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4940,
+      "ls": 309.0,
+      "terrestrial_date": "2026-06-29",
+      "t_air_c": -35.0,
+      "pressure_pa": 800.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4941,
+      "ls": 310.0,
+      "terrestrial_date": "2026-06-30",
+      "t_air_c": -35.0,
+      "pressure_pa": 795.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4942,
+      "ls": 310.0,
+      "terrestrial_date": "2026-07-01",
+      "t_air_c": -36.0,
+      "pressure_pa": 796.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4943,
+      "ls": 311.0,
+      "terrestrial_date": "2026-07-02",
+      "t_air_c": -38.0,
+      "pressure_pa": 797.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4944,
+      "ls": 312.0,
+      "terrestrial_date": "2026-07-04",
+      "t_air_c": -37.5,
+      "pressure_pa": 794.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4945,
+      "ls": 312.0,
+      "terrestrial_date": "2026-07-05",
+      "t_air_c": -39.5,
+      "pressure_pa": 797.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4946,
+      "ls": 313.0,
+      "terrestrial_date": "2026-07-06",
+      "t_air_c": -37.0,
+      "pressure_pa": 790.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4947,
+      "ls": 313.0,
+      "terrestrial_date": "2026-07-07",
+      "t_air_c": -35.5,
+      "pressure_pa": 794.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4948,
+      "ls": 314.0,
+      "terrestrial_date": "2026-07-08",
+      "t_air_c": -36.0,
+      "pressure_pa": 791.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4949,
+      "ls": 315.0,
+      "terrestrial_date": "2026-07-09",
+      "t_air_c": -35.0,
+      "pressure_pa": 792.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4950,
+      "ls": 315.0,
+      "terrestrial_date": "2026-07-10",
+      "t_air_c": -39.5,
+      "pressure_pa": 797.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4951,
+      "ls": 316.0,
+      "terrestrial_date": "2026-07-11",
+      "t_air_c": -36.5,
+      "pressure_pa": 790.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4952,
+      "ls": 316.0,
+      "terrestrial_date": "2026-07-12",
+      "t_air_c": -36.0,
+      "pressure_pa": 793.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4953,
+      "ls": 317.0,
+      "terrestrial_date": "2026-07-13",
+      "t_air_c": -38.0,
+      "pressure_pa": 788.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4954,
+      "ls": 318.0,
+      "terrestrial_date": "2026-07-14",
+      "t_air_c": -38.5,
+      "pressure_pa": 793.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4955,
+      "ls": 318.0,
+      "terrestrial_date": "2026-07-15",
+      "t_air_c": -38.5,
+      "pressure_pa": 786.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4956,
+      "ls": 319.0,
+      "terrestrial_date": "2026-07-16",
+      "t_air_c": -38.5,
+      "pressure_pa": 782.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4957,
+      "ls": 319.0,
+      "terrestrial_date": "2026-07-17",
+      "t_air_c": -43.5,
+      "pressure_pa": 792.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4958,
+      "ls": 320.0,
+      "terrestrial_date": "2026-07-18",
+      "t_air_c": -42.0,
+      "pressure_pa": 787.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4959,
+      "ls": 320.0,
+      "terrestrial_date": "2026-07-19",
+      "t_air_c": -39.5,
+      "pressure_pa": 788.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4960,
+      "ls": 321.0,
+      "terrestrial_date": "2026-07-20",
+      "t_air_c": -40.5,
+      "pressure_pa": 786.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4961,
+      "ls": 322.0,
+      "terrestrial_date": "2026-07-21",
+      "t_air_c": -41.0,
+      "pressure_pa": 793.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4962,
+      "ls": 322.0,
+      "terrestrial_date": "2026-07-22",
+      "t_air_c": -40.5,
+      "pressure_pa": 786.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4963,
+      "ls": 323.0,
+      "terrestrial_date": "2026-07-23",
+      "t_air_c": -36.0,
+      "pressure_pa": 786.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4964,
+      "ls": 323.0,
+      "terrestrial_date": "2026-07-24",
+      "t_air_c": -36.5,
+      "pressure_pa": 784.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4965,
+      "ls": 324.0,
+      "terrestrial_date": "2026-07-25",
+      "t_air_c": -35.5,
+      "pressure_pa": 785.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4966,
+      "ls": 325.0,
+      "terrestrial_date": "2026-07-26",
+      "t_air_c": -37.0,
+      "pressure_pa": 786.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4967,
+      "ls": 325.0,
+      "terrestrial_date": "2026-07-27",
+      "t_air_c": -37.5,
+      "pressure_pa": 784.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4968,
+      "ls": 326.0,
+      "terrestrial_date": "2026-07-28",
+      "t_air_c": -36.5,
+      "pressure_pa": 791.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4969,
+      "ls": 326.0,
+      "terrestrial_date": "2026-07-29",
+      "t_air_c": -37.5,
+      "pressure_pa": 783.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4970,
+      "ls": 327.0,
+      "terrestrial_date": "2026-07-30",
+      "t_air_c": -38.5,
+      "pressure_pa": 786.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4971,
+      "ls": 327.0,
+      "terrestrial_date": "2026-07-31",
+      "t_air_c": -37.0,
+      "pressure_pa": 782.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4972,
+      "ls": 328.0,
+      "terrestrial_date": "2026-08-01",
+      "t_air_c": -37.5,
+      "pressure_pa": 784.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4973,
+      "ls": 328.0,
+      "terrestrial_date": "2026-08-02",
+      "t_air_c": -36.0,
+      "pressure_pa": 784.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4974,
+      "ls": 329.0,
+      "terrestrial_date": "2026-08-03",
+      "t_air_c": -40.0,
+      "pressure_pa": 783.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4975,
+      "ls": 330.0,
+      "terrestrial_date": "2026-08-04",
+      "t_air_c": -38.5,
+      "pressure_pa": 786.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4976,
+      "ls": 330.0,
+      "terrestrial_date": "2026-08-05",
+      "t_air_c": -38.5,
+      "pressure_pa": 781.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4977,
+      "ls": 331.0,
+      "terrestrial_date": "2026-08-06",
+      "t_air_c": -37.0,
+      "pressure_pa": 786.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4978,
+      "ls": 331.0,
+      "terrestrial_date": "2026-08-07",
+      "t_air_c": -39.5,
+      "pressure_pa": 781.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4979,
+      "ls": 332.0,
+      "terrestrial_date": "2026-08-08",
+      "t_air_c": -39.0,
+      "pressure_pa": 785.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4980,
+      "ls": 332.0,
+      "terrestrial_date": "2026-08-09",
+      "t_air_c": -42.5,
+      "pressure_pa": 781.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4981,
+      "ls": 333.0,
+      "terrestrial_date": "2026-08-11",
+      "t_air_c": -38.5,
+      "pressure_pa": 783.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4982,
+      "ls": 334.0,
+      "terrestrial_date": "2026-08-12",
+      "t_air_c": -37.5,
+      "pressure_pa": 780.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4983,
+      "ls": 334.0,
+      "terrestrial_date": "2026-08-13",
+      "t_air_c": -37.0,
+      "pressure_pa": 782.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4984,
+      "ls": 335.0,
+      "terrestrial_date": "2026-08-14",
+      "t_air_c": -38.5,
+      "pressure_pa": 780.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4985,
+      "ls": 335.0,
+      "terrestrial_date": "2026-08-15",
+      "t_air_c": -38.0,
+      "pressure_pa": 781.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4986,
+      "ls": 336.0,
+      "terrestrial_date": "2026-08-16",
+      "t_air_c": -40.0,
+      "pressure_pa": 782.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4987,
+      "ls": 336.0,
+      "terrestrial_date": "2026-08-17",
+      "t_air_c": -39.5,
+      "pressure_pa": 781.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4988,
+      "ls": 337.0,
+      "terrestrial_date": "2026-08-18",
+      "t_air_c": -40.0,
+      "pressure_pa": 780.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4989,
+      "ls": 337.0,
+      "terrestrial_date": "2026-08-19",
+      "t_air_c": -39.0,
+      "pressure_pa": 778.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4990,
+      "ls": 338.0,
+      "terrestrial_date": "2026-08-20",
+      "t_air_c": -40.0,
+      "pressure_pa": 779.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4991,
+      "ls": 339.0,
+      "terrestrial_date": "2026-08-21",
+      "t_air_c": -40.0,
+      "pressure_pa": 779.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4992,
+      "ls": 339.0,
+      "terrestrial_date": "2026-08-22",
+      "t_air_c": -37.5,
+      "pressure_pa": 780.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4993,
+      "ls": 340.0,
+      "terrestrial_date": "2026-08-23",
+      "t_air_c": -38.0,
+      "pressure_pa": 780.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4994,
+      "ls": 340.0,
+      "terrestrial_date": "2026-08-24",
+      "t_air_c": -38.5,
+      "pressure_pa": 777.0,
+      "quality_flag": "midpoint"
+    },
+    {
+      "sol": 4995,
+      "ls": 341.0,
+      "terrestrial_date": "2026-08-25",
+      "t_air_c": -38.0,
+      "pressure_pa": 777.0,
+      "quality_flag": "midpoint"
+    }
+  ]
+}
