@@ -45,5 +45,7 @@ export const SCIENCE_STOPS: Waypoint[] = [
 
 export const DEFAULT_REQUIRED_IDS = ['ridge-a', 'ridge-b', 'ridge-c']
 
-/** Boxwork campaign sol range used as the default for the photo viewer (see NASA Science notes, 2025). */
-export const BOXWORK_SOL_RANGE = { min: 4451, max: 4550 }
+/** NASA's campaign phases start at sol 4534; the end near 4844 is approximate.
+ * https://science.nasa.gov/blog/curiosity-blog-sols-4804-4811-kicking-off-the-final-phase-of-boxwork-exploration/
+ * https://science.nasa.gov/blog/curiosity-blog-sols-4838-4844-wrapping-up-the-boxwork-terrain/ */
+export const BOXWORK_SOL_RANGE = { min: 4534, max: 4844 }

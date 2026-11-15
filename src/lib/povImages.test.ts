@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { IMAGES_MAX, IMAGES_PER_CAMERA, isMission, isSol, normalizeImages } from '../../api/_nasa.ts'
-import { cameraLabel } from './povImages.ts'
+import { BOXWORK_SOL_RANGE } from '../data/sites.ts'
+import { cameraLabel, SOL_RANGE } from './povImages.ts'
 
 const img = (n: number, camera: string, utc = `2025-04-04T0${n % 10}:00:00`) => ({
   sol: 4500,
@@ -43,6 +44,12 @@ describe('normalizeImages', () => {
 })
 
 describe('request validation and labels', () => {
+  it('defaults to the documented campaign with a phase 3 starting sol', () => {
+    expect(BOXWORK_SOL_RANGE).toEqual({ min: 4534, max: 4844 })
+    expect(SOL_RANGE.msl).toEqual({ ...BOXWORK_SOL_RANGE, initial: 4700 })
+    expect(SOL_RANGE.msl.initial).toBeGreaterThanOrEqual(4600)
+    expect(SOL_RANGE.msl.initial).toBeLessThanOrEqual(4805)
+  })
   it('accepts only known missions and sane sols', () => {
     expect(isMission('msl')).toBe(true)
     expect(isMission('mars2020')).toBe(true)

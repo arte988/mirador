@@ -152,12 +152,16 @@ The **Images** tab shows raw rover images for a chosen sol, through `/api/images
 `mars.nasa.gov/rss/api/?feed=raw_images` feed, which returns one sol per request, so the proxy keeps at most 4 images
 per camera (32 in total) and caches them for 15 minutes.
 
-- Default range is about sols 4451 to 4550, the approximate boxwork campaign (to verify against mission notes).
-  A toggle switches to Perseverance (Jezero), shown only for comparison.
+- The default Curiosity range is sols 4534 to approximately 4844, initially sol 4700 (phase 3). NASA's
+  [campaign phases](https://science.nasa.gov/blog/curiosity-blog-sols-4804-4811-kicking-off-the-final-phase-of-boxwork-exploration/)
+  start at sol 4534. The [sol 4844 plan](https://science.nasa.gov/blog/curiosity-blog-sols-4838-4844-wrapping-up-the-boxwork-terrain/)
+  expected a boundary crossing; a [later update](https://science.nasa.gov/blog/curiosity-blog-sols-4845-4851-bye-bye-boxwork-bye-bye/)
+  confirms a weekend crossing without giving an exact sol, so the endpoint is approximate. A toggle switches to
+  Perseverance (Jezero), shown only for comparison.
 - The panel says the images are not a photo of the point you picked on the map and are not matched to your route.
 - When a sol has no downlinked images the feed answers with its generic "latest images" list. The proxy keeps only
   images whose sol matches the request, so another sol's pictures are never shown under the wrong sol.
-- Offline order: live, then the last saved copy, then built-in snapshots for sols 4451, 4500, 4550 and Perseverance
+- Offline order: live, then the last saved copy, then built-in snapshots for sols 4550, 4700, 4820 and Perseverance
   sol 2031 (`public/snapshots/images-*.json`, capture again with `scripts/make-snapshots.mjs`).
 
 ### Sun, light delay, O2 and dose (planning assumptions)
@@ -231,7 +235,7 @@ English, dark theme. Rehearsal mode keeps the light green without pretending liv
 2. **Three routes.** Route tab: Safest / Fastest / Science. Pick one. Read walk-back margin, PNR, and the Sun window
    on the Safety tab.
 3. **Green light and a boxwork-campaign photo.** Safety tab: Data source → Rehearsal. Light is green (simulated).
-   Images tab: a Curiosity sol in ~4451–4550. The panel says it is not a photo of the map point.
+   Images tab: a Curiosity sol in 4534–approximately 4844. The panel says it is not a photo of the map point.
 4. **Inject a storm.** Safety tab: Dust storm. The plan recomputes (speed × 0.7) and the light goes amber. Route tab
    Abort card names the nearest refuge (habitat or support rover).
 5. **HUD on another device, then airplane mode.** Walk tab: Download mission area (estimate first), scan the QR onto

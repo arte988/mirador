@@ -3,17 +3,18 @@
  * live -> last cached copy (stale) -> committed snapshot (only a few sols are committed).
  */
 import type { ImagesPayload, Mission } from '../../api/_nasa.ts'
+import { BOXWORK_SOL_RANGE } from '../data/sites.ts'
 import { fetchJSONCached, type FetchResult } from './storage.ts'
 
 export type { ImagesPayload, Mission, RawImage } from '../../api/_nasa.ts'
 
 /**
- * Default sol ranges for the sliders. The boxwork campaign range is approximate (about sols 4451 to 4550) and
- * should be verified against the mission's own campaign notes. Perseverance has no boxwork campaign: the range is
+ * NASA's phase 3 includes sol 4700: https://science.nasa.gov/blog/curiosity-blog-sols-4804-4811-kicking-off-the-final-phase-of-boxwork-exploration/
+ * The boxwork end is approximate (see BOXWORK_SOL_RANGE). Perseverance has no boxwork campaign: the range is
  * simply the 100 sols up to the newest one known when the snapshot was taken.
  */
 export const SOL_RANGE: Record<Mission, { min: number; max: number; initial: number }> = {
-  msl: { min: 4451, max: 4550, initial: 4500 },
+  msl: { ...BOXWORK_SOL_RANGE, initial: 4700 },
   mars2020: { min: 1932, max: 2031, initial: 2031 },
 }
 
